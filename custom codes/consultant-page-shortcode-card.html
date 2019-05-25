@@ -1,0 +1,38 @@
+<div class="const-list">
+	<div class="wrapper">
+		<ul>
+			[loop type=consultants paged=12 query=cs clean=true url]
+				<li>
+					<div class="const-thumbnail">
+						[field thumbnail-link]
+					</div>
+					<div class="inner-wrapper">
+						<div class="const-title">
+							[field title-link]
+						</div>
+						[repeater consultant-attr]
+							<div class="const-deal-num">
+								[field deal-num]
+							</div>
+							<div class="const-area">
+								[field area]
+							</div>
+							<div class="const-specialty">
+								[field specialty]
+							</div>
+							<div class="const-total-mna">
+								[field total-mna]
+							</div>
+						[/repeater]
+							<div class="const-link">
+								[link]
+									상세보기
+								[/link]
+							</div>
+						</div>
+				</li>
+			[/loop]
+		</ul>
+	</div>
+</div>
+[loopage query=cs]

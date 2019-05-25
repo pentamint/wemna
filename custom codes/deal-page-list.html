@@ -1,0 +1,103 @@
+<table id="mna_deal_excerpt" class="excerpt_table">
+	<thead>
+  	<tr>
+  		<th>등록 No</th>
+  		<th>상태</th>
+  		<th>업종</th>
+  		<th>3년 실적</th>
+  		<th>5년 실적</th>
+  		<th>출자좌수/잔액/<br>자본금</th>
+  		<th>회사형태</th>
+  		<th>지역</th>
+  		<th>양도가</th>
+      <th>링크</th>
+  	</tr>
+	</thead>
+  [loop type=deals paged=12 query=md clean=true url]
+	<tbody>
+  	<tr>
+      [repeater deal-attr]
+    		<td>
+          [field deal-num]
+          [/field]
+        </td>
+        <td>
+          [field deal-status]
+          [/field]
+        </td>
+        <td>
+          [field industry]
+          [/field]
+        </td>
+        <td>
+          [field 3yr-perf]
+          [/field]
+        </td>
+        <td>
+          [field 5yr-perf]
+          [/field]
+        </td>
+        <td>
+          [field subs-balance]
+          [/field]
+        </td>
+        <td>
+          [field biz-type]
+          [/field]
+        </td>
+        <td>
+        [field location]
+        [/field]
+        </td>
+        <td>
+        [field sale-price]
+        [/field]
+        </td>
+      [/repeater]
+        <td>
+        [link]상세보기
+        [/link]
+        </td>
+  	</tr>
+	</tbody>
+  [/loop]
+</table>
+[loopage query=md]
+<style>
+/* reset */
+.entry-content tr th, .entry-content thead th, body.et-pb-preview #main-content .container tr th, body.et-pb-preview #main-content .container thead th {
+  padding: 15px 7px;
+}
+/* text alignment */
+.excerpt_table thead tr th, .excerpt_table tbody tr td {
+  text-align: center
+}
+.excerpt_table thead {
+  background-color:#f9f9f9;
+}
+.excerpt_table thead tr th {
+  font-size: .875rem;
+  font-weight: 900;
+  color: #333;
+}
+.excerpt_table tbody tr td {
+  font-size: .75rem;
+  color: #333;
+}
+/* 메인홈 양도가 색상 */
+.home .excerpt_table tbody tr td:nth-of-type(9) {
+  color: #9e0b0f;
+  font-weight: 900;
+}
+/* 메인홈 링크 디자인 */
+.home .excerpt_table tbody tr td:nth-of-type(10) a {
+  padding: 3px 6px;
+  background-color: #95d600;
+  color: #fff;
+  font-weight: 700;
+}
+.home .excerpt_table tbody tr td:nth-of-type(10) a:hover {
+  background-color: green;
+}
+/* --- */
+</style>

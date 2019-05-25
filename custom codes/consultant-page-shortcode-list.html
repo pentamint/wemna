@@ -1,0 +1,40 @@
+<table id="consultant_excerpt" class="excerpt_table">
+	<thead>
+  	<tr>
+  		<th>등록 No</th>
+  		<th>지역</th>
+  		<th>전문분야</th>
+  		<th>누적 거래금액</th>
+      <th>링크</th>
+  	</tr>
+	</thead>
+  [loop type=consultants paged=12 query=md clean=true url]
+	<tbody>
+  	<tr>
+      [repeater consultant-attr]
+    		<td>
+          [field deal-num]
+          [/field]
+        </td>
+        <td>
+          [field area]
+          [/field]
+        </td>
+        <td>
+          [field specialty]
+          [/field]
+        </td>
+        <td>
+          [field total-mna]
+          [/field]
+        </td>
+      [/repeater]
+        <td>
+        [link]상세보기
+        [/link]
+        </td>
+  	</tr>
+	</tbody>
+  [/loop]
+</table>
+[loopage query=md]
