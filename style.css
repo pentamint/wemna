@@ -309,16 +309,16 @@ a.kboard-default-button-small, input.kboard-default-button-small, button.kboard-
 
 /* ----- Atomic CSS ----- */
 .pc-only {
-
+  display: block;
 }
 .laptop-only {
-
+  display: block;
 }
 .tablet-only {
-
+  display: block;
 }
 .mobile-only {
-
+  display: block;
 }
 
 /* =========================================================
