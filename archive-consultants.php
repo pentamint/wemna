@@ -5,7 +5,7 @@
 	<!-- Custom Code -->
 	<?php if ( is_active_sidebar ( 'fullwidth-header-banner' ) ) : ?>
 		<div class="header-widget header-banner" role="complementary">
-			<h2 class="custom-title">매물 검색하기</h2>
+			<h2 class="custom-title">컨설턴트 검색하기</h2>
 			<?php dynamic_sidebar ( 'fullwidth-header-banner' ); ?>
 		</div>
 	<?php endif; ?>
@@ -14,13 +14,13 @@
 	<div class="container">
 
 		<!-- Custom Filter -->
-	<?php if( have_rows('deal-attr') ): //parent group field ?> 
+	<?php if( have_rows('consultant-attr') ): //parent group field ?> 
 
-		<?php while( have_rows('deal-attr') ): the_row(); ?>
+		<?php while( have_rows('consultant-attr') ): the_row(); ?>
 	
 		<div id="archive-filters">
 
-		<?php foreach( $GLOBALS['deal_query_filters'] as $key => $name ): ?>
+		<?php foreach( $GLOBALS['const_query_filters'] as $key => $name ): ?>
 			
 				<?php
 
@@ -55,10 +55,10 @@
 		(function($) {
 			
 			// change
-			$('#archive-filters').on('change', 'input[type="select"]', function(){
+			$('#archive-filters').on('change', 'input[type="radio"]', function(){
 
 				// vars
-				var url = '<?php echo home_url('deals'); ?>';
+				var url = '<?php echo home_url('consultants'); ?>';
 					args = {};
 					
 				// loop over filters
@@ -69,7 +69,7 @@
 						vals = [];
 					
 					// find checked inputs
-					$(this).find('input:selected').each(function(){
+					$(this).find('input:checked').each(function(){
 			
 						vals.push( $(this).val() );
 			
@@ -161,27 +161,32 @@
 
 					<!-- Custom Field -->
 
-					<div class="deal-data-container">
+					<div class="const-data-container">
 
-						<?php if( have_rows('deal-attr') ): //parent group field
+						<?php if( have_rows('consultant-attr') ): //parent group field
 
-							while( have_rows('deal-attr') ): the_row(); 
+							while( have_rows('consultant-attr') ): the_row(); 
 
 							// vars
-							$industry = get_sub_field('industry');
-							$threeperf = get_sub_field('3yr-perf');
-							$location = get_sub_field('location');
-							$saleprice = get_sub_field('sale-price');
-							$subsbalance = get_sub_field('subs-balance');
+							$const_num = get_sub_field('const-num');
+							$const_name = get_sub_field('const-name');
+							$const_phone = get_sub_field('const-phone');
+							$const_email = get_sub_field('const-email');
+							$const_area = get_sub_field('const-area');
+							$const_specialty = get_sub_field('const-specialty');
+							$const_avail = get_sub_field('const-avail');
+							$const_tamount = get_sub_field('const-tamount');
+							$const_tcount = get_sub_field('const-tcount');
+							$const_popular = get_sub_field('const-popular');
 
 						?>
-						<div class="deal-data">
+						<div class="const-deal-data">
 							<ul>
-								<li><span>업종:&nbsp</span><p><?php echo $industry ?></p></li>
-								<li><span>3년 누적실적:&nbsp</span><p><?php echo $threeperf ?></p></li>
-								<li><span>지역:&nbsp</span><p><?php echo $location ?></p></li>
-								<li><span>양도가:&nbsp</span><p><?php echo $saleprice ?></p></li>
-								<li><span>출자좌수/잔액:&nbsp</span><p><?php echo $subsbalance ?></p></li>
+								<li><span>전화번호:&nbsp</span><p><?php echo $const_phone ?></p></li>
+								<li><span>이메일:&nbsp</span><p><?php echo $const_email ?></p></li>
+								<li><span>지역:&nbsp</span><p><?php echo $const_area ?></p></li>
+								<li><span>전문분야:&nbsp</span><p><?php echo $const_specialty ?></p></li>
+								<li><span>고객 선호도:&nbsp</span><p><?php echo $const_popular ?></p></li>
 							</ul>
 						</div>
 						<button><a href="<?php the_permalink(); ?>">상세보기</a></button>

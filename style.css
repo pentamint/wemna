@@ -30,6 +30,11 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: Roboto, 'NanumSquareRound', sans-serif;
 }
+/* Object fit fix exclude logo */
+img:not(#logo) {
+  object-fit: cover;
+  font-family: 'object-fit: cover;';
+}
 
 /* =========================================================
   1. /BASE
@@ -74,7 +79,7 @@ h1, h2, h3, h4, h5, h6 {
 /*** Take out the divider line between content and sidebar ***/
 #main-content .container:before {background: none;}
 /*** Expand the content area to fullwidth ***/
-@media (min-width: 981px){
+@media (min-width: 981px) {
   #left-area {
       width: 100%;
       padding: 23px 0px 0px !important;
@@ -90,12 +95,14 @@ h1, h2, h3, h4, h5, h6 {
   padding-bottom: 60px !important;
 }
 /* --- */
-
 /* !----- Divi Default ----- */
 
 /* --- Global --- */
 #main-content {
   min-height: 40rem;
+}
+#main-content .container {
+  padding-bottom: 58px;
 }
 /* --- */
 
@@ -136,6 +143,42 @@ h1, h2, h3, h4, h5, h6 {
 /* =========================================================
   3. MODULE
   ========================================================= */
+/* ----- Fullwidth Header Banner Module ----- */
+.home .header-banner {
+  display: none;
+}
+.header-banner {
+  position: relative;
+}
+.header-banner .widget img {
+  width: 100vw;
+  max-height: 7rem;
+}
+.header-banner .custom-title {
+  position: absolute;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+.header-banner section {
+  line-height: 0; /* remove extra bottom space */
+}
+@media (min-width: 768px) {
+  .header-banner .widget img {
+    max-height: 8rem;
+  }
+  .header-banner .custom-title {
+    font-size: 1.75rem;
+  }
+}
+@media (min-width: 981px) {
+  .header-banner .widget img {
+    max-height: 9rem;
+  }
+}
 /* ----- Archives ----- */
 /* --- Archives: Global --- */
 .pagination {
@@ -421,27 +464,8 @@ a.kboard-default-button-small, input.kboard-default-button-small, button.kboard-
 /* --- */
 
 /* --- Global Page Elements --- */
-/* - Fullwidth Header Img - */
-.et_pb_section_0.et_pb_fullwidth_section {
-  padding-top: 0 !important;
-}
-.et_pb_fullwidth_header .et_pb_fullwidth_header_overlay {
-  background-color: rgba(0,0,0,0.5);
-}
-.et_pb_fullwidth_header .et_pb_fullwidth_header_container.left .header-content {
-  margin-right: 0;
-}
-h1.et_pb_module_header {
-  text-align: center;
-  padding-bottom: 0;
-}
-@media (max-width: 767px) {
-  .et_pb_fullwidth_header {
-    padding: 10px 0;
-  }
-  h1.et_pb_module_header {
-    font-size: 24px;
-  }
+.entry-title {
+  display: none;
 }
 /* --- */
 
