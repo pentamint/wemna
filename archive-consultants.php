@@ -25,7 +25,7 @@
 				<?php
 
 				// get the field's settings without attempting to load a value
-				$field = get_sub_field_object($key, false, false);
+				$field = get_field_object($key, false, false);
 
 				?>
 			
@@ -182,11 +182,11 @@
 						?>
 						<div class="const-deal-data">
 							<ul>
-								<li><span>전화번호:&nbsp</span><p><?php echo $const_phone ?></p></li>
-								<li><span>이메일:&nbsp</span><p><?php echo $const_email ?></p></li>
-								<li><span>지역:&nbsp</span><p><?php echo $const_area ?></p></li>
-								<li><span>전문분야:&nbsp</span><p><?php echo $const_specialty ?></p></li>
-								<li><span>고객 선호도:&nbsp</span><p><?php echo $const_popular ?></p></li>
+								<li><span>전화번호:&nbsp</span><p><?php print_r($const_phone) ?></p></li>
+								<li><span>이메일:&nbsp</span><p><?php print_r($const_email) ?></p></li>
+								<li><span>지역:&nbsp</span><p><?php print_r($const_area) ?></p></li>
+								<li><span>전문분야:&nbsp</span><p><?php print_r($const_specialty) ?></p></li>
+								<li><span>고객 선호도:&nbsp</span><p><?php print_r($const_popular) ?></p></li>
 							</ul>
 						</div>
 						<button><a href="<?php the_permalink(); ?>">상세보기</a></button>
