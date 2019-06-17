@@ -202,8 +202,8 @@ function convert_constarea_to_standard_wp_meta($post_id) {
 // Create Custom Post Filter
 // array of filters (field key => field name)
 $GLOBALS['deal_query_filters'] = array( 
-	'field_5cb2d3b24e890'	=> 'industry', 
-	'field_5cb2d0673f66a'	=> 'location',
+	'field_5d0748a932b51'	=> 'deal-industry', 
+	'field_5d0748dd72f85'	=> 'deal-location',
 );
 
 $GLOBALS['const_query_filters'] = array( 
