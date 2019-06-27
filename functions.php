@@ -273,36 +273,37 @@ function pm_filter_function(){
 
 	$args = array(
 		'orderby' => 'date', // we will sort posts by date
-		'order'	=> $_POST['date'] // ASC or DESC
+		'order'	=> $_POST['date'], // ASC or DESC
+		'post_type' => 'deals',
 	);
 
- 	// for taxonomies / categories
-	 if( isset( $_POST['deals-industry-filter'] ) )
-	 $args['tax_query'] = array(
-		 array(
-			 'taxonomy' => 'industry',
-			 'field' => 'id',
-			 'terms' => $_POST['deals-industry-filter']
-		 )
-	 );
+	// for taxonomies / categories
+	if( isset( $_POST['deals_industry_filter'] ) && $_POST['deals_industry_filter'] ) {
+		$industrydata = $_POST['deals_industry_filter'];
+		$locationdata = $_POST['deals_location_filter'];
 
-	// // first of all create empty tax_query array 
-	// $args['tax_query'] = array();
+	$args['meta_query'][] = array (
+		'key' => 'industry',
+		'value' => array(''),
+		'terms' => $_POST['deals_industry_filter'],
+		'relation' => 'OR',
 
-	// $args['tax_query'][] = array(
-	// 	'taxonomy' => 'industry', 
-	// 	'field' => 'id',
-	// 	'terms' => $_POST['deals-industry-filter']
-	// );
+	);
+	}
+	$args['tax_query'][] = array(
+		'taxonomy' => 'industry', 
+		'field' => 'id',
+		'terms' => $_POST['deals-industry-filter']
+	);
 
-	// $args['tax_query'][] = array(
-	// 	'taxonomy' => 'location', 
-	// 	'field' => 'id',
-	// 	'terms' => $_POST['deals-location-filter']
-	// );
+	$args['tax_query'][] = array(
+		'taxonomy' => 'location', 
+		'field' => 'id',
+		'terms' => $_POST['deals-location-filter']
+	);
 
-	// if( isset( $_POST['deals-industry-filter'] ) && $_POST['deals-industry-filter'] || isset( $_POST['deals-location-filter'] ) && $_POST['deals-location-filter'] )
-	// 	$args['tax_query'][] = array('relation'=>'AND' );
+	if( isset( $_POST['deals-industry-filter'] ) && $_POST['deals-industry-filter'] || isset( $_POST['deals-location-filter'] ) && $_POST['deals-location-filter'] )
+		$args['tax_query'][] = array('relation'=>'AND' );
 
 
 	// create $args['meta_query'] array if one of the following fields is filled
