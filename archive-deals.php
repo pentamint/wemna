@@ -15,7 +15,70 @@
 
 		<!-- Custom Filter -->
 
-		<?php do_action('show_beautiful_filters'); ?>
+		<div class="container">
+			<form action="<?php echo site_url() ?>/wp-admin/admin-ajax.php" method="POST" id="filter">
+				<?php
+					if( $terms = get_terms( array(
+						'taxonomy' => 'industry',
+						'orderby' => 'name'
+					) ) ) : 
+
+						echo '<select name="deals-industry-filter"><option value="">업종을 선택하세요.</option>';
+						foreach ( $terms as $term ) :
+							echo '<option value="' . $term->term_id . '">' . $term->name . '</option>'; // ID of the category as the value of an option
+						endforeach;
+						echo '</select>';
+					endif;
+
+					// if( $terms = get_terms( array(
+					// 	'taxonomy' => 'location',
+					// 	'orderby' => 'name'
+					// ) ) ) : 
+
+					// 	echo '<select name="deals-location-filter"><option value="">지역을 선택하세요.</option>';
+					// 	foreach ( $terms as $term ) :
+					// 		echo '<option value="' . $term->term_id . '">' . $term->name . '</option>'; // ID of the category as the value of an option
+					// 	endforeach;
+					// 	echo '</select>';
+					// endif;
+				?>
+				<input type="text" name="price_min" placeholder="Min price" />
+				<input type="text" name="price_max" placeholder="Max price" />
+				<label>
+					<input type="radio" name="date" value="ASC" /> 날짜: 오름차순
+				</label>
+				<label>
+					<input type="radio" name="date" value="DESC" selected="selected" /> 날짜: 내림차순
+				</label>
+				<label>
+					<input type="checkbox" name="featured_image" /> 대표사진 있는 매물만 보기
+				</label>
+				<button>필터 적용하기</button>
+				<input type="hidden" name="action" value="myfilter">
+			</form>
+			<div id="response"></div>
+		</div>
+
+		<script>
+			jQuery(function($){
+				$('#filter').submit(function(){
+					var filter = $('#filter');
+					$.ajax({
+						url:filter.attr('action'),
+						data:filter.serialize(), // form data
+						type:filter.attr('method'), // POST
+						beforeSend:function(xhr){
+							filter.find('button').text('Processing...'); // changing the button label
+						},
+						success:function(data){
+							filter.find('button').text('Apply filter'); // changing the button label back
+							$('#response').html(data); // insert data
+						}
+					});
+					return false;
+				});
+			});
+		</script>
 
 		<!-- End Custom Filter -->
 

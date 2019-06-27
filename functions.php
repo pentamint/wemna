@@ -37,51 +37,101 @@ function wemna_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'wemna_scripts' );
 
-// Create Custom Post Type 매물
+// Create CPT M&A매물
 function deals_init() {
 	$labels = array(
-		'name'					=> 'M&A매물',
-		'singular_name' 		=> 'M&A매물',
-		'add_new'				=> 'Add New',
-		'add_new_item'			=> 'Add New Deal',
-		'edit_item'				=> 'Edit Deal',
-		'new_item'				=> 'New Deal',
-		'all_item'				=> 'All Deals',
-		'view_item'				=> 'View Deal',
-		'search_item'			=> 'Search Deals',
-		'not_found'				=> 'No deals found',
-		'not_found_in_trash'	=> 'No deals found in Trash',
-		'parent_item_colon'		=> '',
-		'menu_name'				=> 'M&A매물'
+		'name'                => __( 'M&A매물' ),
+		'singular_name'       => __( 'M&A매물'),
+		'menu_name'           => __( 'M&A매물'),
+		'parent_item_colon'   => __( '상위 M&A매물:'),
+		'all_items'           => __( 'M&A매물 전체보기'),
+		'view_item'           => __( 'M&A매물 보기'),
+		'add_new_item'        => __( '신규 M&A매물 등록하기'),
+		'add_new'             => __( '신규 등록하기'),
+		'edit_item'           => __( 'M&A매물 수정하기'),
+		'update_item'         => __( 'M&A매물 적용하기'),
+		'search_items'        => __( 'M&A매물 검색하기'),
+		'not_found'           => __( '매물이 없습니다.'),
+		'not_found_in_trash'  => __( '휴지통에 매물이 없습니다.')
 	);
     $args = array(
-     	'labels' 				=> $labels,
-        'taxonomies' 			=> array('post_tag'),
-		'public' 				=> true,
-		'publicly_queryable'	=> true,
-        'show_ui' 				=> true,
-		'show_in_menu'			=> true,
-		'query_var' 			=> true,
-		'rewrite' 				=> array('slug' => 'deals'),
-		'capability_type' 		=> 'post',
-		'has_archive'			=> 'deals',
-		'hierarchical' 			=> false,
-		'menu_icon' 			=> 'dashicons-admin-post',
-        'supports' 				=> array(
-            'title',
-            'editor',
-            'excerpt',
-            'trackbacks',
-            'custom-fields',
-            'comments',
-            'revisions',
-            'thumbnail',
-            'author',
-            'page-attributes',)
+		'label'               => __( 'deals'),
+		'description'         => __( 'WeMnA M&A매물'),
+		'labels'              => $labels,
+		'supports'            => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'revisions', 'custom-fields'),
+		'public'              => true,
+		'hierarchical'        => false,
+		'show_ui'             => true,
+		'show_in_menu'        => true,
+		'show_in_nav_menus'   => true,
+		'show_in_admin_bar'   => true,
+		'query_var' 		  => true,
+		'has_archive'         => 'deals',
+		'can_export'          => true,
+		'exclude_from_search' => false,
+	        'yarpp_support'     => true,
+		'taxonomies' 	      => array('post_tag'),
+		'publicly_queryable'  => true,
+		'capability_type'     => 'page',
+		'query_var' 		  => true,
+		'rewrite' 			  => array('slug' => 'deals'),
+		'menu_icon' 	      => 'dashicons-admin-post',
         );
     register_post_type( 'deals', $args );
 }
 add_action( 'init', 'deals_init' );
+
+// Add Custom Taxonomy Industry for CPT Deals
+function deals_custom_taxonomy_industry() {
+	$labels = array(
+		'name' => _x( '업종', 'taxonomy general name' ),
+		'singular_name' => _x( '업종', 'taxonomy singular name' ),
+		'search_items' =>  __( '업종 검색하기' ),
+		'all_items' => __( '업종 전체보기' ),
+		'parent_item' => __( '상위 업종' ),
+		'parent_item_colon' => __( '상위 업종:' ),
+		'edit_item' => __( '업종 수정하기' ), 
+		'update_item' => __( '업종 적용하기' ),
+		'add_new_item' => __( '신규 업종 등록하기' ),
+		'new_item_name' => __( '신규 업종 이름' ),
+		'menu_name' => __( '업종' ),
+	); 	
+	register_taxonomy('industry',array('deals'), array(
+		'hierarchical' => true,
+		'labels' => $labels,
+		'show_ui' => true,
+		'show_admin_column' => true,
+		'query_var' => true,
+		'rewrite' => array( 'slug' => 'industry' ),
+	));
+}
+add_action( 'init', 'deals_custom_taxonomy_industry', 0 );
+
+// Add Custom Taxonomy Locations for CPT Deals
+function deals_custom_taxonomy_location() {
+	$labels = array(
+		'name' => _x( '지역', 'taxonomy general name' ),
+		'singular_name' => _x( '지역', 'taxonomy singular name' ),
+		'search_items' =>  __( '지역 검색하기' ),
+		'all_items' => __( '지역 전체보기' ),
+		'parent_item' => __( '상위 지역' ),
+		'parent_item_colon' => __( '상위 지역:' ),
+		'edit_item' => __( '지역 수정하기' ), 
+		'update_item' => __( '지역 적용하기' ),
+		'add_new_item' => __( '신규 지역 등록하기' ),
+		'new_item_name' => __( '신규 지역 이름' ),
+		'menu_name' => __( '지역' ),
+	); 	
+	register_taxonomy('location',array('deals'), array(
+		'hierarchical' => true,
+		'labels' => $labels,
+		'show_ui' => true,
+		'show_admin_column' => true,
+		'query_var' => true,
+		'rewrite' => array( 'slug' => 'location' ),
+	));
+}
+add_action( 'init', 'deals_custom_taxonomy_location', 0 );
 
 // Create Custom Post Type 컨설턴트
 function consultants_init() {
@@ -190,98 +240,6 @@ function convert_constarea_to_standard_wp_meta($post_id) {
   } // end if have rows
 } // end function
  
-/*
-    15 lines of code and now instead of dealing with complicated filters
-    and "LIKE" queries and modifying the WHERE portion of the query
-    and slowing down our site, instead we can simply use the
-    color_wp meta key in a simple more simple WP_Query()
-   
-*/
-
-
-// Create Custom Post Filter
-// array of filters (field key => field name)
-$GLOBALS['deal_query_filters'] = array( 
-	'field_5d0748a932b51'	=> 'deal-industry', 
-	'field_5d0748dd72f85'	=> 'deal-location',
-);
-
-$GLOBALS['const_query_filters'] = array( 
-	'field_5cd58b387f009'	=> 'const-area',
-	'field_5cd58ffa7f00a'	=> 'const-specialty'
-);
-
-// action
-add_action('pre_get_posts', 'my_pre_get_posts', 10, 1);
-
-function my_pre_get_posts( $query ) {
-	
-	// bail early if is in admin
-	if( is_admin() ) return;
-	
-	// bail early if not main query
-	// - allows custom code / plugins to continue working
-	if( !$query->is_main_query() ) return;
-	
-	// get meta query
-	$meta_query = $query->get('meta_query');
-
-	// loop over filters
-	foreach( $GLOBALS['deal_query_filters'] as $key => $name ) {
-		
-		// continue if not found in url
-		if( empty($_GET[ $name ]) ) {
-			
-			continue;
-			
-		}
-		
-		// get the value for this filter
-		// eg: http://www.website.com/events?city=melbourne,sydney
-		$value = explode(',', $_GET[ $name ]);
-		
-		// append meta query
-		$meta_query = [];
-    	$meta_query[] = array(
-            'key'		=> $name,
-            'value'		=> $value,
-            'compare'	=> 'LIKE',
-        );
-        
-	}
-
-	// loop over filters
-	foreach( $GLOBALS['const_query_filters'] as $key => $name ) {
-		
-		// continue if not found in url
-		if( empty($_GET[ $name ]) ) {
-			
-			continue;
-			
-		}
-		
-		// get the value for this filter
-		// eg: http://www.website.com/events?city=melbourne,sydney
-		$value = explode(',', $_GET[ $name ]);
-		
-		// append meta query
-		$meta_query = [];
-    	$meta_query[] = array(
-			'relation' => 'AND', // other value is 'OR'
-			array (
-            'key'		=> $name,
-            'value'		=> $value,
-			'compare'	=> 'LIKE',
-			)
-        );
-        
-	} 
-	
-	// update meta query
-	$query->set('meta_query', $meta_query);
-
-}
-
 /**
  * Plugin name: WP Trac #42573: Fix for theme template file caching.
  * Description: Flush the theme file cache each time the admin screens are loaded which uses the file list.
@@ -304,6 +262,106 @@ function wp_42573_fix_template_caching( WP_Screen $current_screen ) {
 	delete_transient( $transient_key );
 }
 add_action( 'current_screen', 'wp_42573_fix_template_caching' );
+
+// ----- Custom Filter Module ----- //
+// Process Filter Requests
+
+add_action('wp_ajax_myfilter', 'pm_filter_function'); // wp_ajax_{ACTION HERE} 
+add_action('wp_ajax_nopriv_myfilter', 'pm_filter_function');
+ 
+function pm_filter_function(){
+
+	$args = array(
+		'orderby' => 'date', // we will sort posts by date
+		'order'	=> $_POST['date'] // ASC or DESC
+	);
+
+ 	// for taxonomies / categories
+	 if( isset( $_POST['deals-industry-filter'] ) )
+	 $args['tax_query'] = array(
+		 array(
+			 'taxonomy' => 'industry',
+			 'field' => 'id',
+			 'terms' => $_POST['deals-industry-filter']
+		 )
+	 );
+
+	// // first of all create empty tax_query array 
+	// $args['tax_query'] = array();
+
+	// $args['tax_query'][] = array(
+	// 	'taxonomy' => 'industry', 
+	// 	'field' => 'id',
+	// 	'terms' => $_POST['deals-industry-filter']
+	// );
+
+	// $args['tax_query'][] = array(
+	// 	'taxonomy' => 'location', 
+	// 	'field' => 'id',
+	// 	'terms' => $_POST['deals-location-filter']
+	// );
+
+	// if( isset( $_POST['deals-industry-filter'] ) && $_POST['deals-industry-filter'] || isset( $_POST['deals-location-filter'] ) && $_POST['deals-location-filter'] )
+	// 	$args['tax_query'][] = array('relation'=>'AND' );
+
+
+	// create $args['meta_query'] array if one of the following fields is filled
+	if( isset( $_POST['price_min'] ) && $_POST['price_min'] || isset( $_POST['price_max'] ) && $_POST['price_max'] || isset( $_POST['featured_image'] ) && $_POST['featured_image'] == 'on' )
+		$args['meta_query'] = array( 'relation'=>'AND' ); // AND means that all conditions of meta_query should be true
+ 
+	// if both minimum price and maximum price are specified we will use BETWEEN comparison
+	if( isset( $_POST['price_min'] ) && $_POST['price_min'] && isset( $_POST['price_max'] ) && $_POST['price_max'] ) {
+		$args['meta_query'][] = array(
+			'key' => '_price',
+			'value' => array( $_POST['price_min'], $_POST['price_max'] ),
+			'type' => 'numeric',
+			'compare' => 'between'
+		);
+	} else {
+		// if only min price is set
+		if( isset( $_POST['price_min'] ) && $_POST['price_min'] )
+			$args['meta_query'][] = array(
+				'key' => '_price',
+				'value' => $_POST['price_min'],
+				'type' => 'numeric',
+				'compare' => '>'
+			);
+ 
+		// if only max price is set
+		if( isset( $_POST['price_max'] ) && $_POST['price_max'] )
+			$args['meta_query'][] = array(
+				'key' => '_price',
+				'value' => $_POST['price_max'],
+				'type' => 'numeric',
+				'compare' => '<'
+			);
+	}
+ 
+ 
+	// if post thumbnail is set
+	if( isset( $_POST['featured_image'] ) && $_POST['featured_image'] == 'on' )
+		$args['meta_query'][] = array(
+			'key' => '_thumbnail_id',
+			'compare' => 'EXISTS'
+		);
+	// if you want to use multiple checkboxed, just duplicate the above 5 lines for each checkbox
+ 
+	$query = new WP_Query( $args );
+ 
+	if( $query->have_posts() ) :
+		while( $query->have_posts() ): $query->the_post();
+			?>
+			<a href="<?php the_permalink(); ?>"><h2><?php the_title(); ?></h2></a>
+			<?php
+			the_post_thumbnail();
+		endwhile;
+		wp_reset_postdata();
+	else :
+		echo 'No posts found';
+	endif;
+ 
+	die();
+}
 
 // END PENTAMINT CUSTOM
 
