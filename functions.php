@@ -303,6 +303,20 @@ function pm_filter_function(){
 			)
 		);
 
+	if ( (isset( $_POST['deals-industry-filter'] ) && !empty( $_POST['deals-industry-filter'] )) && (isset( $_POST['deals-location-filter'] ) && !empty( $_POST['deals-location-filter'] )) )
+		$args['tax_query'] = array(
+			'relation' => 'AND',
+			array(
+				'taxonomy' => 'industry',
+				'field' => 'id',
+				'terms' => $_POST['deals-industry-filter']
+			),
+			array(
+				'taxonomy' => 'location',
+				'field' => 'id',
+				'terms' => $_POST['deals-location-filter']
+			)
+		);
 
 	// if( isset( $_POST['deals-industry-filter'] ) )
 	// 	$args['tax_query'] = array(
