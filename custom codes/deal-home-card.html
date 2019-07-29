@@ -1,80 +1,80 @@
 <div class="deal-list">
-	<div class="wrapper">
-		<ul>
-			[loop type=deals paged=9 query=md clean=true url]
-				<li>
-					<div class="deal-title">
-						[link]등록번호: [field title][/link]
-					</div>
-          <div class="inner-wrapper">
-            <div class="deal-thumbnail">
-              [field thumbnail-link]
-            </div>
-            [repeater deal-attr]
-              <div class="deal-industry">
-                <span>업종: </span>[field industry]<div class="deal-list">
-                    <div class="wrapper">
-                        <ul>
-                            [loop type=deals paged=9 query=md clean=true url]
-                                <li>
-                                    <div class="deal-title">
-                                        [link]등록번호: [field title][/link]
-                                    </div>
-                          <div class="inner-wrapper">
-                            <div class="deal-thumbnail">
-                              [field thumbnail-link]
-                            </div>
-                            [repeater deal-attr]
-                              <div class="deal-industry">
-                                <span>업종: </span>[field industry]
-                              </div>
-                              <div class="deal-3yr">
-                                <span>3년 누적실적: </span>[field 3yr-perf]
-                              </div>
-                              <div class="deal-location">
-                                <span>지역: </span>[field location]
-                              </div>
-                              <div class="deal-sale-price">
-                                <span>양도가: </span>[field sale-price]
-                              </div>
-                              <div class="deal-balance">
-                                <span>출자좌수/잔액: <br></span>[field subs-balance]
-                              </div>
-                            [/repeater]
-                              <div class="deal-link">
-                                [link]
-                                  상세보기
-                                [/link]
-                              </div>
-                          </div>
-                                </li>
-                            [/loop]
-                        </ul>
-                    </div>
-                </div>
-                
-              </div>
-              <div class="deal-3yr">
-                <span>3년 누적실적: </span>[field 3yr-perf]
-              </div>
-              <div class="deal-location">
-                <span>지역: </span>[field location]
-              </div>
-              <div class="deal-sale-price">
-                <span>양도가: </span>[field sale-price]
-              </div>
-              <div class="deal-balance">
-                <span>출자좌수/잔액: <br></span>[field subs-balance]
-              </div>
-            [/repeater]
-              <div class="deal-link">
-                [link]
-                  상세보기
-                [/link]
-              </div>
+  <div class="wrapper">
+    <ul>
+      [loop type=deals paged=6 query=md clean=true url]
+      <li>
+        <div class="deal-title">
+          [link]등록번호: [field title][/link]
+        </div>
+        <div class="inner-wrapper">
+          <div class="deal-thumbnail">
+            [field thumbnail-link]
           </div>
-				</li>
-			[/loop]
-		</ul>
-	</div>
+          [repeater deal-attr]
+          <div class="deal-industry">
+            <span>업종: </span>[field industry]<div class="deal-list">
+              <div class="wrapper">
+                <ul>
+                  [loop type=deals paged=9 query=md clean=true url]
+                  <li>
+                    <div class="deal-title">
+                      [link]등록번호: [field title][/link]
+                    </div>
+                    <div class="inner-wrapper">
+                      <div class="deal-thumbnail">
+                        [field thumbnail-link]
+                      </div>
+                      [repeater deal-attr]
+                      <div class="deal-industry">
+                        <span>업종: </span>[field industry]
+                      </div>
+                      <div class="deal-3yr">
+                        <span>3년 누적실적: </span>[field 3yr-perf]
+                      </div>
+                      <div class="deal-location">
+                        <span>지역: </span>[field location]
+                      </div>
+                      <div class="deal-sale-price">
+                        <span>양도가: </span>[field sale-price]
+                      </div>
+                      <div class="deal-balance">
+                        <span>출자좌수/잔액: <br></span>[field subs-balance]
+                      </div>
+                      [/repeater]
+                      <div class="deal-link">
+                        [link]
+                        상세보기
+                        [/link]
+                      </div>
+                    </div>
+                  </li>
+                  [/loop]
+                </ul>
+              </div>
+            </div>
+
+          </div>
+          <div class="deal-3yr">
+            <span>3년 누적실적: </span>[field 3yr-perf]
+          </div>
+          <div class="deal-location">
+            <span>지역: </span>[field location]
+          </div>
+          <div class="deal-sale-price">
+            <span>양도가: </span>[field sale-price]
+          </div>
+          <div class="deal-balance">
+            <span>출자좌수/잔액: <br></span>[field subs-balance]
+          </div>
+          [/repeater]
+          <div class="deal-link">
+            [link]
+            상세보기
+            [/link]
+          </div>
+        </div>
+      </li>
+      [/loop]
+    </ul>
+  </div>
 </div>

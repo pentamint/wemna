@@ -184,7 +184,7 @@ img:not(#logo) {
 .pagination {
   width: 100%;
 }
-.archive #content-area article {
+.archive #response article .deal-data-container .deal-data ul {
   border: 1px solid #ccc;
 }
 /* --- */
@@ -202,49 +202,48 @@ img:not(#logo) {
 .archive .post-meta {
   display: none;
 }
-.et_right_sidebar #left-area { /* Flex container */
-  padding-right: 0;
-  display: flex;
-  flex-wrap: wrap;
-  flex: 0 1;
-  justify-content: space-between;
+/* archive card design */
+body.archive #response {
+  margin-top: 30px;
 }
-.archive #content-area article { /* Flex item */
-  margin-bottom: 25px;
-  margin-right: 15px;
-  border: 1px solid #ccc;
-  flex-direction: column;
-  flex-basis: calc((76vw - 20px) / 2);
-  min-width: 130px;
+body.archive #response article {
+  margin-bottom: 30px;
 }
-.archive #content-area article .deal-data-container {
-  padding: 10px 20px;
-}
-.archive #content-area article .deal-data-container .deal-data ul {
-  padding: 10px 0 18px;
-}
-.archive #content-area article .deal-data-container .deal-data ul li {
-  display: flex;
-  flex-wrap: wrap;
-}
-@media (max-width: 767px) {
-  .archive #content-area article:nth-child(2n) {
-    margin-right: 0;
-  }
-}
-@media (min-width: 768px) {
-  .archive #content-area article {
-    flex-basis: calc((75vw - 20px) / 3);
-    max-width: 346px;
-  }
-  .archive #content-area article:nth-child(3n) {
-    margin-right: 0;
-  }
-}
-.archive #content-area article .entry-title {
-  padding: 10px 20px;
-  border-bottom: 1px solid #ccc;
+body.archive .entry-title {
+  padding-bottom: 0;
+  border-bottom: 0;
+  padding: 10px 15px;
   text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  background-color: #005288;
+  color: #f2f2f2;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+body.archive .entry-title a:hover {
+  color: #ccc;
+}
+body.archive .deal-data  { /* card inner */
+  padding: 15px 10px;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-bottom: none;
+}
+body.archive .deal-data > ul > li p { /* card inner p */
+  display: inline-block;
+}
+/* button design */
+body.archive #response button {
+  width: 100%;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+}
+body.archive #response button a {
+  font-weight: 700;
+}
+body.archive #response button a:hover {
+  color: #95d600;
 }
 /* --- */
 /* ----- */
@@ -466,6 +465,9 @@ a.kboard-default-button-small, input.kboard-default-button-small, button.kboard-
 /* --- Global Page Elements --- */
 .entry-title {
   display: none;
+}
+body.archive .entry-title {
+  display: block;
 }
 /* --- */
 

@@ -11,6 +11,6 @@
 	// ----- Site visible after all elements are loaded. Fix object fit for IE
 	$(document).ready(function() {
 		objectFitImages();
-  });
+	});
   
 } )( jQuery );

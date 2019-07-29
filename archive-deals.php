@@ -41,17 +41,17 @@
 			endif;
 
 			?>
-			<input type="text" name="price_min" placeholder="Min price" />
-			<input type="text" name="price_max" placeholder="Max price" />
+			<!-- <input type="text" name="price_min" placeholder="Min price" />
+			<input type="text" name="price_max" placeholder="Max price" /> -->
 			<label>
-				<input type="radio" name="date" value="ASC" /> 날짜: 오름차순
+				<input type="radio" name="date" value="ASC" /> 날짜순 ↑
 			</label>
 			<label>
-				<input type="radio" name="date" value="DESC" selected="selected" /> 날짜: 내림차순
+				<input type="radio" name="date" value="DESC" selected="selected" /> 날짜순 ↓
 			</label>
-			<label>
+			<!-- <label>
 				<input type="checkbox" name="featured_image" /> 대표사진 있는 매물만 보기
-			</label>
+			</label> -->
 			<button>필터 적용하기</button>
 			<input type="hidden" name="action" value="myfilter">
 		</form>
@@ -62,7 +62,7 @@
 					while (have_posts()) : the_post();
 						$post_format = et_pb_post_format(); ?>
 
-						<article id="post-<?php the_ID(); ?>" <?php post_class('et_pb_post'); ?>>
+						<article id="post-<?php the_ID(); ?>" <?php post_class('et_pb_post col-12 col-sm-6 col-md-4'); ?>>
 
 							<?php
 							$thumb = '';
@@ -113,82 +113,102 @@
 
 							<!-- Custom Field -->
 
-							<div class="deal-data-container">
+							<?php
+							if (have_rows('deal-attr')) : //parent group field
+								while (have_rows('deal-attr')) : the_row();
+									// vars
+									$threeperf = get_sub_field('3yr-perf');
+									$saleprice = get_sub_field('sale-price');
+									$subsbalance = get_sub_field('subs-balance');
+									?>
+									<div class="deal-data">
+										<ul>
+											<li><span>업종:&nbsp</span>
+												<p>
+													<?php $terms = wp_get_post_terms($post->ID, 'industry');
+													if ($terms) {
+														$out = array();
+														foreach ($terms as $term) {
+															// $out[] = '<a class="' . $term->slug . '" href="' . get_term_link($term->slug, 'industry') . '">' . $term->name . '</a>';
+															$out[] = $term->name;
+														}
+														echo join(', ', $out);
+													} ?>
+												</p>
+											</li>
+											<li><span>지역:&nbsp</span>
+												<p>
+													<?php $terms = wp_get_post_terms($post->ID, 'location');
+													if ($terms) {
+														$out = array();
+														foreach ($terms as $term) {
+															// $out[] = '<a class="' . $term->slug . '" href="' . get_term_link($term->slug, 'location') . '">' . $term->name . '</a>';
+															$out[] = $term->name;
+														}
+														echo join(', ', $out);
+													} ?>
+												</p>
+											</li>
+											<li><span>3년 누적실적:&nbsp</span>
+												<p><?php echo $threeperf ?></p>
+											</li>
+											<li><span>양도가:&nbsp</span>
+												<p><?php echo $saleprice ?></p>
+											</li>
+											<li><span>출자좌수/잔액:&nbsp</span>
+												<p><?php echo $subsbalance ?></p>
+											</li>
+										</ul>
+									</div>
+									<button><a href="<?php the_permalink(); ?>">상세보기</a></button>
 
-								<?php if (have_rows('deal-attr')) : //parent group field
-									while (have_rows('deal-attr')) : the_row();
-										// vars
-										$industry = get_sub_field('industry');
-										$threeperf = get_sub_field('3yr-perf');
-										$location = get_sub_field('location');
-										$saleprice = get_sub_field('sale-price');
-										$subsbalance = get_sub_field('subs-balance');
-										?>
-										<div class="deal-data">
-											<ul>
-												<li><span>업종:&nbsp</span>
-													<p><?php echo $industry ?></p>
-												</li>
-												<li><span>3년 누적실적:&nbsp</span>
-													<p><?php echo $threeperf ?></p>
-												</li>
-												<li><span>지역:&nbsp</span>
-													<p><?php echo $location ?></p>
-												</li>
-												<li><span>양도가:&nbsp</span>
-													<p><?php echo $saleprice ?></p>
-												</li>
-												<li><span>출자좌수/잔액:&nbsp</span>
-													<p><?php echo $subsbalance ?></p>
-												</li>
-											</ul>
-										</div>
-										<button><a href="<?php the_permalink(); ?>">상세보기</a></button>
+								<?php endwhile; ?>
+							<?php endif; ?>
 
-									<?php endwhile; ?>
-								<?php endif; ?>
-							</div>
+					<!-- End Custom Field -->
 
-							<!-- End Custom Field -->
+					</article> <!-- .et_pb_post -->
+				<?php
+				endwhile;
 
-						</article> <!-- .et_pb_post -->
-					<?php
-					endwhile;
+				// if (function_exists('wp_pagenavi'))
+				// 	wp_pagenavi();
+				// else
+				// 	get_template_part('includes/navigation', 'index');
+			else :
+				get_template_part('includes/no-results', 'index');
+			endif;
+			?>
 
-					if (function_exists('wp_pagenavi'))
-						wp_pagenavi();
-					else
-						get_template_part('includes/navigation', 'index');
-				else :
-					get_template_part('includes/no-results', 'index');
-				endif;
-				?>
+		</div> <!-- #pm_posts_wrap -->
+	</div> <!-- #response -->
 
-			</div> <!-- #pm_posts_wrap -->
-		</div> <!-- #response -->
+	<?php
+		// Custom Pagination & Load More Button for AJAX Filters
+		pm_paginator( get_pagenum_link() ); ?>
 
-		<script>
-			jQuery(function($) {
-				$('#filter').submit(function() {
-					var filter = $('#filter');
-					$.ajax({
-						url: filter.attr('action'),
-						data: filter.serialize(), // form data
-						type: filter.attr('method'), // POST
-						beforeSend: function(xhr) {
-							filter.find('button').text('처리중...'); // changing the button label
-						},
-						success: function(data) {
-							filter.find('button').text('필터 적용하기'); // changing the button label back
-							$('#response').html(data); // insert data
-						}
-					});
-					return false;
+	<script>
+		jQuery(function($) {
+			$('#filter').submit(function() {
+				var filter = $('#filter');
+				$.ajax({
+					url: filter.attr('action'),
+					data: filter.serialize(), // form data
+					type: filter.attr('method'), // POST
+					beforeSend: function(xhr) {
+						filter.find('button').text('처리중...'); // changing the button label
+					},
+					success: function(data) {
+						filter.find('button').text('필터 적용하기'); // changing the button label back
+						$('#response').html(data); // insert data
+					}
 				});
+				return false;
 			});
-		</script>
+		});
+	</script>
 
-	</div> <!-- .container -->
+</div> <!-- .container -->
 </div> <!-- #main-content -->
 
 <?php
