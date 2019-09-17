@@ -53,7 +53,7 @@
 				<input type="checkbox" name="featured_image" /> 대표사진 있는 매물만 보기
 			</label> -->
 			<button>필터 적용하기</button>
-			<input type="hidden" name="action" value="myfilter">
+			<input type="hidden" name="action" value="pmfilter">
 		</form>
 		<div id="response">
 			<div id="pm_posts_wrap" class="row">

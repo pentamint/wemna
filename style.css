@@ -22,24 +22,28 @@ CSS Table of Contents SMACSS
   ========================================================= */
 
 body {
-  font-family: Roboto, 'Nanum Gothic', sans-serif;
+  font-family: Roboto, "Nanum Gothic", sans-serif;
   font-size: 100%;
   font-weight: 400;
   word-break: keep-all;
 }
-h1, h2, h3, h4, h5, h6 {
-  font-family: Roboto, 'NanumSquareRound', sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Roboto, "NanumSquareRound", sans-serif;
 }
 /* Object fit fix exclude logo */
 img:not(#logo) {
   object-fit: cover;
-  font-family: 'object-fit: cover;';
+  font-family: "object-fit: cover;";
 }
 
 /* =========================================================
   1. /BASE
   ========================================================= */
-
 
 /* =========================================================
   2. LAYOUT
@@ -73,21 +77,56 @@ img:not(#logo) {
   }
 }
 /* !Header Jump Fix */
+/* --- Divi Bootstrap Support --- */
+.container {
+  width: 100% !important;
+}
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px !important;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px !important;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px !important;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px !important;
+  }
+}
+.et_right_sidebar #left-area.row {
+  margin-right: -15px !important;
+}
+body.archive #sidebar,
+#left-area {
+  width: auto !important;
+}
 /* !--- Bug Fix --- */
 
 /* --- Remove Sidebar --- */
 /*** Take out the divider line between content and sidebar ***/
-#main-content .container:before {background: none;}
+#main-content .container:before {
+  background: none;
+}
 /*** Expand the content area to fullwidth ***/
 @media (min-width: 981px) {
   #left-area {
-      width: 100%;
-      padding: 23px 0px 0px !important;
-      float: none !important;
+    width: 100%;
+    padding: 23px 0px 0px !important;
+    float: none !important;
   }
 }
 /*** Hide Sidebar ***/
-#sidebar {display:none;}
+#sidebar {
+  display: none;
+}
 /* !--- Remove Sidebar --- */
 
 /* --- Loop Page Layout --- */
@@ -121,14 +160,17 @@ img:not(#logo) {
     padding: 30px 0 20px !important;
   }
   /* Row spacing */
-  .et_pb_row, .et_pb_column .et_pb_row_inner {
+  .et_pb_row,
+  .et_pb_column .et_pb_row_inner {
     padding: 15px 0 0px;
   }
 }
 /* --- Columns Settings --- */
 @media (max-width: 479px) {
   /* Mobile col # from 1 to 2 */
-  .et_pb_row .et_pb_column.et_pb_column_1_4, .et_pb_row .et_pb_column.et_pb_column_1_5, .et_pb_row .et_pb_column.et_pb_column_1_6 {
+  .et_pb_row .et_pb_column.et_pb_column_1_4,
+  .et_pb_row .et_pb_column.et_pb_column_1_5,
+  .et_pb_row .et_pb_column.et_pb_column_1_6 {
     width: 47.25% !important;
     margin-right: 5.5%;
   }
@@ -138,7 +180,6 @@ img:not(#logo) {
 /* =========================================================
   2. /LAYOUT
   ========================================================= */
-
 
 /* =========================================================
   3. MODULE
@@ -161,7 +202,7 @@ img:not(#logo) {
   font-weight: 700;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
 }
 .header-banner section {
   line-height: 0; /* remove extra bottom space */
@@ -224,13 +265,15 @@ body.archive .entry-title {
 body.archive .entry-title a:hover {
   color: #ccc;
 }
-body.archive .deal-data  { /* card inner */
+body.archive .deal-data {
+  /* card inner */
   padding: 15px 10px;
   border: 1px solid #ccc;
   border-top: none;
   border-bottom: none;
 }
-body.archive .deal-data > ul > li p { /* card inner p */
+body.archive .deal-data > ul > li p {
+  /* card inner p */
   display: inline-block;
 }
 /* button design */
@@ -246,6 +289,43 @@ body.archive #response button a:hover {
   color: #95d600;
 }
 /* --- */
+/* --- Archives: 조정인 검색 --- */
+.post-type-archive-consultants article {
+  margin-bottom: 30px;
+}
+.post-type-archive-consultants article .article-content-wrapper {
+  -webkit-box-shadow: 0 0 35px 0 rgba(154, 161, 171, 0.15);
+  box-shadow: 0 0 35px 0 rgba(154, 161, 171, 0.15);
+  border: 1px solid #e9e9e9;
+  padding: 20px 20px;
+  display: flex;
+}
+.post-type-archive-consultants article .article-content-wrapper a {
+  flex-basis: 40%;
+  margin-bottom: 0;
+}
+.post-type-archive-consultants article .article-content-wrapper a img {
+  height: 100%;
+  object-fit: contain;
+  font-family: "object-fit: contain;";
+}
+.post-type-archive-consultants article .entry-title {
+  text-align: left;
+  background-color: #fff;
+  color: #000;
+  font-size: 16px;
+}
+.post-type-archive-consultants article .const-data-container ul {
+  padding-bottom: .5rem;
+}
+.post-type-archive-consultants article .const-data-container ul li {
+  display: flex;
+  font-size: 14px;
+}
+.post-type-archive-consultants article .const-data-container button {
+  margin-left: 1em;
+  font-size: 14px;
+}
 /* ----- */
 
 /* --- Search Page --- */
@@ -305,23 +385,25 @@ body.archive #response button a:hover {
   flex-basis: 150px;
 }
 .const-list ul .const-title {
-  flex-basis: calc(100% - 150px );
-} 
+  flex-basis: calc(100% - 150px);
+}
 /* --- */
 /* --- Home Excerpt --- */
 
 /* --- */
 /* ----- */
 
-
 /* ----- Kboard */
 .kboard-default-poweredby {
   display: none;
 }
-#kboard-default-list .kboard-pagination .kboard-pagination-pages li:hover a, #kboard-default-list .kboard-pagination .kboard-pagination-pages li.active a {
+#kboard-default-list .kboard-pagination .kboard-pagination-pages li:hover a,
+#kboard-default-list .kboard-pagination .kboard-pagination-pages li.active a {
   background-color: #95d600 !important;
 }
-a.kboard-default-button-small, input.kboard-default-button-small, button.kboard-default-button-small {
+a.kboard-default-button-small,
+input.kboard-default-button-small,
+button.kboard-default-button-small {
   background: #95d600 !important;
 }
 
@@ -342,7 +424,7 @@ a.kboard-default-button-small, input.kboard-default-button-small, button.kboard-
   float: left;
   margin-bottom: 1em;
 }
-.nav-next::after{
+.nav-next::after {
   content: "→";
 }
 .nav-previous::before {
@@ -367,7 +449,6 @@ a.kboard-default-button-small, input.kboard-default-button-small, button.kboard-
   3. /MODULE
   ========================================================= */
 
-
 /* =========================================================
   4. STATE
   ========================================================= */
@@ -376,7 +457,6 @@ a.kboard-default-button-small, input.kboard-default-button-small, button.kboard-
   4. /STATE
   ========================================================= */
 
-
 /* =========================================================
   5. THEME
   ========================================================= */
@@ -384,7 +464,12 @@ a.kboard-default-button-small, input.kboard-default-button-small, button.kboard-
 /* ----- Typography ----- */
 /* --- Base --- */
 @media (max-width: 479px) {
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     padding-bottom: 20px;
   }
   h2 {
@@ -394,7 +479,8 @@ a.kboard-default-button-small, input.kboard-default-button-small, button.kboard-
   .et_pb_number_counter .percent p {
     font-size: 48px;
   }
-  .et_pb_circle_counter h3, .et_pb_number_counter h3 {
+  .et_pb_circle_counter h3,
+  .et_pb_number_counter h3 {
     font-size: 14px;
     font-weight: 700;
   }
@@ -402,7 +488,7 @@ a.kboard-default-button-small, input.kboard-default-button-small, button.kboard-
 /* --- */
 /* --- Header area --- */
 #top-menu a {
-  font-family: Roboto, 'NanumSquareRound', sans-serif;
+  font-family: Roboto, "NanumSquareRound", sans-serif;
   color: #5e5e5e;
   font-size: 1rem;
   font-weight: 900;
@@ -416,7 +502,12 @@ a.kboard-default-button-small, input.kboard-default-button-small, button.kboard-
 }
 /* --- */
 /* --- Main content --- */
-.et_pb_cta_0.et_pb_promo h2, .et_pb_cta_0.et_pb_promo h1.et_pb_module_header, .et_pb_cta_0.et_pb_promo h3.et_pb_module_header, .et_pb_cta_0.et_pb_promo h4.et_pb_module_header, .et_pb_cta_0.et_pb_promo h5.et_pb_module_header, .et_pb_cta_0.et_pb_promo h6.et_pb_module_header {
+.et_pb_cta_0.et_pb_promo h2,
+.et_pb_cta_0.et_pb_promo h1.et_pb_module_header,
+.et_pb_cta_0.et_pb_promo h3.et_pb_module_header,
+.et_pb_cta_0.et_pb_promo h4.et_pb_module_header,
+.et_pb_cta_0.et_pb_promo h5.et_pb_module_header,
+.et_pb_cta_0.et_pb_promo h6.et_pb_module_header {
   font-size: 3rem !important;
 }
 /* --- */
@@ -435,11 +526,77 @@ a.kboard-default-button-small, input.kboard-default-button-small, button.kboard-
 
 /* --- Divi Defaults Reset --- */
 /* Primary Color Reset */
-#et_search_icon:hover, #top-menu li.current-menu-ancestor>a, #top-menu li.current-menu-item>a, .bottom-nav li.current-menu-item>a, .comment-reply-link, .entry-summary p.price ins, .et-social-icon a:hover, .et_password_protected_form .et_submit_button, .footer-widget h4, .form-submit .et_pb_button, .mobile_menu_bar:after, .mobile_menu_bar:before, .nav-single a, .posted_in a, .woocommerce #content div.product p.price, .woocommerce #content div.product span.price, .woocommerce #content input.button, .woocommerce #content input.button.alt, .woocommerce #content input.button.alt:hover, .woocommerce #content input.button:hover, .woocommerce #respond input#submit, .woocommerce #respond input#submit.alt, .woocommerce #respond input#submit.alt:hover, .woocommerce #respond input#submit:hover, .woocommerce .star-rating span:before, .woocommerce a.button, .woocommerce a.button.alt, .woocommerce a.button.alt:hover, .woocommerce a.button:hover, .woocommerce button.button, .woocommerce button.button.alt, .woocommerce button.button.alt:hover, .woocommerce div.product p.price, .woocommerce div.product span.price, .woocommerce input.button, .woocommerce input.button.alt, .woocommerce input.button.alt:hover, .woocommerce input.button:hover, .woocommerce-page #content div.product p.price, .woocommerce-page #content div.product span.price, .woocommerce-page #content input.button, .woocommerce-page #content input.button.alt, .woocommerce-page #content input.button.alt:hover, .woocommerce-page #respond input#submit, .woocommerce-page #respond input#submit.alt, .woocommerce-page #respond input#submit.alt:hover, .woocommerce-page #respond input#submit:hover, .woocommerce-page .star-rating span:before, .woocommerce-page a.button, .woocommerce-page a.button.alt, .woocommerce-page a.button.alt:hover, .woocommerce-page a.button:hover, .woocommerce-page button.button, .woocommerce-page button.button.alt, .woocommerce-page button.button.alt:hover, .woocommerce-page button.button:hover, .woocommerce-page div.product p.price, .woocommerce-page div.product span.price, .woocommerce-page input.button, .woocommerce-page input.button.alt, .woocommerce-page input.button.alt:hover, .woocommerce-page input.button:hover, .wp-pagenavi a:hover, .wp-pagenavi span.current {
+#et_search_icon:hover,
+#top-menu li.current-menu-ancestor > a,
+#top-menu li.current-menu-item > a,
+.bottom-nav li.current-menu-item > a,
+.comment-reply-link,
+.entry-summary p.price ins,
+.et-social-icon a:hover,
+.et_password_protected_form .et_submit_button,
+.footer-widget h4,
+.form-submit .et_pb_button,
+.mobile_menu_bar:after,
+.mobile_menu_bar:before,
+.nav-single a,
+.posted_in a,
+.woocommerce #content div.product p.price,
+.woocommerce #content div.product span.price,
+.woocommerce #content input.button,
+.woocommerce #content input.button.alt,
+.woocommerce #content input.button.alt:hover,
+.woocommerce #content input.button:hover,
+.woocommerce #respond input#submit,
+.woocommerce #respond input#submit.alt,
+.woocommerce #respond input#submit.alt:hover,
+.woocommerce #respond input#submit:hover,
+.woocommerce .star-rating span:before,
+.woocommerce a.button,
+.woocommerce a.button.alt,
+.woocommerce a.button.alt:hover,
+.woocommerce a.button:hover,
+.woocommerce button.button,
+.woocommerce button.button.alt,
+.woocommerce button.button.alt:hover,
+.woocommerce div.product p.price,
+.woocommerce div.product span.price,
+.woocommerce input.button,
+.woocommerce input.button.alt,
+.woocommerce input.button.alt:hover,
+.woocommerce input.button:hover,
+.woocommerce-page #content div.product p.price,
+.woocommerce-page #content div.product span.price,
+.woocommerce-page #content input.button,
+.woocommerce-page #content input.button.alt,
+.woocommerce-page #content input.button.alt:hover,
+.woocommerce-page #respond input#submit,
+.woocommerce-page #respond input#submit.alt,
+.woocommerce-page #respond input#submit.alt:hover,
+.woocommerce-page #respond input#submit:hover,
+.woocommerce-page .star-rating span:before,
+.woocommerce-page a.button,
+.woocommerce-page a.button.alt,
+.woocommerce-page a.button.alt:hover,
+.woocommerce-page a.button:hover,
+.woocommerce-page button.button,
+.woocommerce-page button.button.alt,
+.woocommerce-page button.button.alt:hover,
+.woocommerce-page button.button:hover,
+.woocommerce-page div.product p.price,
+.woocommerce-page div.product span.price,
+.woocommerce-page input.button,
+.woocommerce-page input.button.alt,
+.woocommerce-page input.button.alt:hover,
+.woocommerce-page input.button:hover,
+.wp-pagenavi a:hover,
+.wp-pagenavi span.current {
   color: #005288;
 }
 /* Disc Design Remove */
-#left-area ul, .entry-content ul, .comment-content ul, body.et-pb-preview #main-content .container ul {
+#left-area ul,
+.entry-content ul,
+.comment-content ul,
+body.et-pb-preview #main-content .container ul {
   list-style-type: none;
 }
 /* --- */
@@ -450,14 +607,16 @@ a.kboard-default-button-small, input.kboard-default-button-small, button.kboard-
     font-size: 10px;
   }
 }
-#et-info-phone::before { /* remove phone icon */
+#et-info-phone::before {
+  /* remove phone icon */
   display: none;
 }
 /* --- */
 
 /* --- Footer Section --- */
-.footer-widget .title { /* footer title */
-  margin-bottom: .75rem;
+.footer-widget .title {
+  /* footer title */
+  margin-bottom: 0.75rem;
   font-weight: 700;
 }
 /* --- */
@@ -480,14 +639,61 @@ body.archive .entry-title {
   padding-left: 10px !important;
   min-height: 220px; /* equal height */
 }
-/* Row 3 - 양도양수 리스트 */
+/* Row 3 - 조정사건 리스트 */
+.best_deals_wrapper {
+  background-image: linear-gradient(180deg, #ffffff 0%, #e8eefc 100%) !important;
+}
+.best_deals_wrapper .container {
+  padding-top: 100px !important;
+  padding-bottom: 100px !important;
+}
+.best_deals_row_title {
+  font-family: "Nanum Square Round", Helvetica, Arial, Lucida, sans-serif;
+  font-weight: 700;
+  font-size: 38px;
+  line-height: 1.5em;
+  text-align: center;
+  margin-bottom: 1em;
+}
+.deals_item .post-title {
+  padding-bottom: 0;
+  border-bottom: 0;
+  padding: 10px 15px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  background-color: #005288;
+  color: #f2f2f2;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.deals_item .post-title a:hover {
+  color: #ccc;
+}
+.best_deals .deal-data {
+  padding: 15px 10px;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-bottom: none;
+}
+.best_deals .deal-data > ul > li p {
+  display: inline-block;
+}
+.deals_item button {
+  width: 100%;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+}
+.deals_item button a {
+  font-weight: 700;
+}
+.deals_item button a:hover {
+  color: #95d600;
+}
+.best_deals .row {
+  margin-bottom: 1em;
+}
 @media (max-width: 479px) {
-  .deal-title {
-    font-size: 13px;
-  }
-  .deal-list ul li .inner-wrapper {
-    font-size: 13px;
-  }
 }
 /* --- */
 
