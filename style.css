@@ -78,7 +78,13 @@ img:not(#logo) {
 }
 /* !Header Jump Fix */
 /* --- Divi Bootstrap Support --- */
-.container {
+#main-content > .container {
+  padding-bottom: 58px;
+}
+#main-content .et_pb_section .container {
+  padding-top: 0;
+}
+.container, .et_pb_row {
   width: 100% !important;
 }
 @media (min-width: 576px) {
@@ -139,9 +145,6 @@ body.archive #sidebar,
 /* --- Global --- */
 #main-content {
   min-height: 40rem;
-}
-#main-content .container {
-  padding-bottom: 58px;
 }
 /* --- */
 

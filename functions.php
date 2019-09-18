@@ -386,7 +386,7 @@ function pm_loadmore_ajax_handler()
 			$pm_post_title = get_the_title();
 			?>
 
-			<article id="post-<?php the_ID(); ?>" <?php post_class('et_pb_post col-12 col-sm-6 col-md-4'); ?>>
+			<article id="post-<?php the_ID(); ?>" <?php post_class('et_pb_post col-12 col-sm-6 col-md-3'); ?>>
 
 				<!-- Custom Field -->
 				<h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php echo $pm_post_title; ?></a></h2>

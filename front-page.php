@@ -60,7 +60,7 @@ $is_page_builder_used = et_pb_is_pagebuilder_used(get_the_ID());
 				<!-- Custom Row -->
 				<div class="best_deals best_deals_wrapper">
 					<div class="container">
-						<h2 class="best_deals_row_title">조정사건 리스트</h2>
+						<h2 class="best_deals_row_title">조정사례</h2>
 						<div class="row">
 							<?php
 							$query = new WP_Query(
@@ -135,13 +135,11 @@ $is_page_builder_used = et_pb_is_pagebuilder_used(get_the_ID());
 						<div class="best_btn_group">
 							<ul>
 								<li class="view_more">
-									<a href="/deals/">더보기</a>
-								</li>
-								<li class="apply_btn">
-									<a href="/resolution/apply/">분쟁 조정 신청하기</a>
+									<a href="/deals/">사례 더보기</a>
 								</li>
 							</ul>
 						</div>
+						<button><a href="/resolution/apply/">분쟁 조정 신청하기</a></button>
 					</div> <!-- .container -->
 				</div> <!-- .best_deals_wrapper -->
 				<!-- End Custom Row -->

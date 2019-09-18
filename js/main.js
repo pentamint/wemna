@@ -12,5 +12,10 @@
 	$(document).ready(function() {
 		objectFitImages();
 	});
+
+	// Divi Bootstrap Support
+	$(document).ready(function() {
+		$('.et_pb_row').wrap('<div class="container"></div>');
+	});
   
 } )( jQuery );
