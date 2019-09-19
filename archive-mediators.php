@@ -5,7 +5,7 @@
 	<!-- Custom Code -->
 	<?php if (is_active_sidebar('fullwidth-header-banner')) : ?>
 		<div class="header-widget header-banner" role="complementary">
-			<h2 class="custom-title">컨설턴트 검색하기</h2>
+			<h2 class="custom-title">조정인 검색하기</h2>
 			<?php dynamic_sidebar('fullwidth-header-banner'); ?>
 		</div>
 	<?php endif; ?>
@@ -14,10 +14,10 @@
 	<div class="container">
 
 		<!-- Custom Filter -->
-		<?php if (have_rows('consultant-attr')) : //parent group field 
+		<?php if (have_rows('mediator-attr')) : //parent group field 
 			?>
 
-			<?php while (have_rows('consultant-attr')) : the_row(); ?>
+			<?php while (have_rows('mediator-attr')) : the_row(); ?>
 
 				<div id="archive-filters">
 
@@ -58,7 +58,7 @@
 				$('#archive-filters').on('change', 'input[type="radio"]', function() {
 
 					// vars
-					var url = '<?php echo home_url('consultants'); ?>';
+					var url = '<?php echo home_url('mediators'); ?>';
 					args = {};
 
 					// loop over filters
@@ -113,51 +113,57 @@
 						<article id="post-<?php the_ID(); ?>" <?php post_class('et_pb_post col-12 col-lg-6'); ?>>
 							<div class="article-content-wrapper">
 
-								<?php
-										$thumb = '';
+								<div class="article-img">
+									<?php
+											$thumb = '';
 
-										$width = (int) apply_filters('et_pb_index_blog_image_width', 1080);
+											$width = (int) apply_filters('et_pb_index_blog_image_width', 1080);
 
-										$height = (int) apply_filters('et_pb_index_blog_image_height', 675);
-										$classtext = 'et_pb_post_main_image';
-										$titletext = get_the_title();
-										$thumbnail = get_thumbnail($width, $height, $classtext, $titletext, $titletext, false, 'Blogimage');
-										$thumb = $thumbnail["thumb"];
+											$height = (int) apply_filters('et_pb_index_blog_image_height', 675);
+											$classtext = 'et_pb_post_main_image';
+											$titletext = get_the_title();
+											$thumbnail = get_thumbnail($width, $height, $classtext, $titletext, $titletext, false, 'Blogimage');
+											$thumb = $thumbnail["thumb"];
 
-										et_divi_post_format_content();
+											et_divi_post_format_content();
 
-										if (!in_array($post_format, array('link', 'audio', 'quote'))) {
-											if ('video' === $post_format && false !== ($first_video = et_get_first_video())) :
-												printf(
-													'<div class="et_main_video_container">
+											if (!in_array($post_format, array('link', 'audio', 'quote'))) {
+												if ('video' === $post_format && false !== ($first_video = et_get_first_video())) :
+													printf(
+														'<div class="et_main_video_container">
 									%1$s
 								</div>',
-													et_core_esc_previously($first_video)
-												);
-											elseif (!in_array($post_format, array('gallery')) && 'on' === et_get_option('divi_thumbnails_index', 'on') && '' !== $thumb) : ?>
-										<a class="entry-featured-image-url" href="<?php the_permalink(); ?>">
-											<?php print_thumbnail($thumb, $thumbnail["use_timthumb"], $titletext, $width, $height); ?>
-										</a>
-								<?php
-											elseif ('gallery' === $post_format) :
-												et_pb_gallery_images();
-											endif;
-										} ?>
+														et_core_esc_previously($first_video)
+													);
+												elseif (!in_array($post_format, array('gallery')) && 'on' === et_get_option('divi_thumbnails_index', 'on') && '' !== $thumb) : ?>
+											<a class="entry-featured-image-url" href="<?php the_permalink(); ?>">
+												<?php print_thumbnail($thumb, $thumbnail["use_timthumb"], $titletext, $width, $height); ?>
+											</a>
+									<?php
+												elseif ('gallery' === $post_format) :
+													et_pb_gallery_images();
+												endif;
+											} ?>
+									<div class="mediator-more"><a href="<?php the_permalink(); ?>">더 알아보기</a></div>
+								</div>
 								<div class="article-content">
 									<?php if (!in_array($post_format, array('link', 'audio', 'quote'))) : ?>
 										<?php if (!in_array($post_format, array('link', 'audio'))) : ?>
 											<h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
 										<?php endif; ?>
 
-										<?php
-													et_divi_post_meta();
+										<?php et_divi_post_meta(); ?>
 
-													if ('on' !== et_get_option('divi_blog_style', 'false') || (is_search() && ('on' === get_post_meta(get_the_ID(), '_et_pb_use_builder', true)))) {
-														truncate_post(270);
-													} else {
-														the_content();
-													}
-													?>
+										<div class="article-post-content">
+											<?php
+														if ('on' !== et_get_option('divi_blog_style', 'false') || (is_search() && ('on' === get_post_meta(get_the_ID(), '_et_pb_use_builder', true)))) {
+															truncate_post(270);
+														} else {
+															the_content();
+														}
+														?>
+										</div>
+
 									<?php endif; ?>
 
 									<!-- Custom Field -->
@@ -200,7 +206,6 @@
 														</li>
 													</ul>
 												</div>
-												<button><a href="<?php the_permalink(); ?>">상세보기</a></button>
 
 											<?php endwhile; ?>
 										<?php endif; ?>

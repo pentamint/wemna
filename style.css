@@ -84,7 +84,8 @@ img:not(#logo) {
 #main-content .et_pb_section .container {
   padding-top: 0;
 }
-.container, .et_pb_row {
+.container,
+.et_pb_row {
   width: 100% !important;
 }
 @media (min-width: 576px) {
@@ -243,6 +244,7 @@ body.archive #sidebar,
   color: #fff;
   font-weight: 700;
 }
+.home .post-meta,
 .archive .post-meta {
   display: none;
 }
@@ -289,43 +291,68 @@ body.archive #response button a {
   font-weight: 700;
 }
 body.archive #response button a:hover {
-  color: #95d600;
+  color: #7bc6de;
 }
 /* --- */
 /* --- Archives: 조정인 검색 --- */
-.post-type-archive-consultants article {
+article.mediators {
   margin-bottom: 30px;
 }
-.post-type-archive-consultants article .article-content-wrapper {
+article.mediators .article-content-wrapper {
   -webkit-box-shadow: 0 0 35px 0 rgba(154, 161, 171, 0.15);
   box-shadow: 0 0 35px 0 rgba(154, 161, 171, 0.15);
   border: 1px solid #e9e9e9;
   padding: 20px 20px;
   display: flex;
+  background-color: #fff;
 }
-.post-type-archive-consultants article .article-content-wrapper a {
+article.mediators .article-content-wrapper .article-img {
   flex-basis: 40%;
-  margin-bottom: 0;
+  margin-right: 20px;
+  text-align: center;
 }
-.post-type-archive-consultants article .article-content-wrapper a img {
+article.mediators .article-content-wrapper a {
+  margin: 0 auto;
+  margin-bottom: 15px !important;
+  /* round photos */
+  max-width: 125px;
+  max-height: 125px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+article.mediators .article-content-wrapper a img {
   height: 100%;
   object-fit: contain;
   font-family: "object-fit: contain;";
 }
-.post-type-archive-consultants article .entry-title {
+article.mediators .article-content-wrapper .mediator-more {
+  font-size: 14px;
+}
+article.mediators .article-content-wrapper .article-content {
+  flex-basis: 60%;
+}
+article.mediators .article-content-wrapper .article-post-content {
+  display: none;
+}
+article.mediators .article-content-wrapper .const-data-container .const-deal-data > ul {
+  padding-bottom: 0;
+}
+article.mediators .entry-title {
+  display: block;
   text-align: left;
   background-color: #fff;
   color: #000;
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: 700;
 }
-.post-type-archive-consultants article .const-data-container ul {
-  padding-bottom: .5rem;
+article.mediators .const-data-container ul {
+  padding-bottom: 0.5rem;
 }
-.post-type-archive-consultants article .const-data-container ul li {
+article.mediators .const-data-container ul li {
   display: flex;
   font-size: 14px;
 }
-.post-type-archive-consultants article .const-data-container button {
+article.mediators .const-data-container button {
   margin-left: 1em;
   font-size: 14px;
 }
@@ -374,7 +401,7 @@ body.archive #response button a:hover {
 
 /* ----- */
 
-/* ----- Consultant ----- */
+/* ----- mediator ----- */
 /* --- Search Page --- */
 .const-list ul li {
   display: flex;
@@ -402,12 +429,12 @@ body.archive #response button a:hover {
 }
 #kboard-default-list .kboard-pagination .kboard-pagination-pages li:hover a,
 #kboard-default-list .kboard-pagination .kboard-pagination-pages li.active a {
-  background-color: #95d600 !important;
+  background-color: #7bc6de !important;
 }
 a.kboard-default-button-small,
 input.kboard-default-button-small,
 button.kboard-default-button-small {
-  background: #95d600 !important;
+  background: #7bc6de !important;
 }
 
 /* Post navigation */
@@ -498,7 +525,7 @@ button.kboard-default-button-small {
 }
 #top-menu a:hover {
   opacity: 1;
-  color: #95d600;
+  color: #7bc6de;
 }
 #logo {
   max-height: 30%;
@@ -634,7 +661,11 @@ body.archive .entry-title {
 /* --- */
 
 /* --- Pages: 메인페이지 --- */
+
 /* Row 2 - 최고의 M&A 플랫폼 */
+.home .et_pb_section_2 {
+  background-image: linear-gradient(180deg, #85c9e0 0%, #7bc6de 100%) !important;
+}
 .et_pb_row .et_pb_column .et_pb_blurb {
   padding-top: 20px !important;
   padding-right: 10px !important;
@@ -642,9 +673,10 @@ body.archive .entry-title {
   padding-left: 10px !important;
   min-height: 220px; /* equal height */
 }
-/* Row 3 - 조정사건 리스트 */
+
+/* Row 3 - 조정사례 리스트 */
 .best_deals_wrapper {
-  background-image: linear-gradient(180deg, #ffffff 0%, #e8eefc 100%) !important;
+  background-color: #fff;
 }
 .best_deals_wrapper .container {
   padding-top: 100px !important;
@@ -691,9 +723,25 @@ body.archive .entry-title {
   font-weight: 700;
 }
 .deals_item button a:hover {
-  color: #95d600;
+  color: #7bc6de;
 }
 .best_deals .row {
+  margin-bottom: 1em;
+}
+/* Row 4 - 조정인 리스트 */
+.best_mediators_wrapper {
+  background-color: #f1f4f8;
+}
+.best_mediators_wrapper .container {
+  padding-top: 100px !important;
+  padding-bottom: 100px !important;
+}
+.best_mediators_row_title {
+  font-family: "Nanum Square Round", Helvetica, Arial, Lucida, sans-serif;
+  font-weight: 700;
+  font-size: 38px;
+  line-height: 1.5em;
+  text-align: center;
   margin-bottom: 1em;
 }
 @media (max-width: 479px) {

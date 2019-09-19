@@ -55,23 +55,23 @@ add_action('wp_enqueue_scripts', 'wemna_scripts');
 function deals_init()
 {
 	$labels = array(
-		'name'                => __('M&A매물'),
-		'singular_name'       => __('M&A매물'),
-		'menu_name'           => __('M&A매물'),
-		'parent_item_colon'   => __('상위 M&A매물:'),
-		'all_items'           => __('M&A매물 전체보기'),
-		'view_item'           => __('M&A매물 보기'),
-		'add_new_item'        => __('신규 M&A매물 등록하기'),
+		'name'                => __('조정사례'),
+		'singular_name'       => __('조정사례'),
+		'menu_name'           => __('조정사례'),
+		'parent_item_colon'   => __(''),
+		'all_items'           => __('조정사례 전체보기'),
+		'view_item'           => __('조정사례 보기'),
+		'add_new_item'        => __('신규 조정사례 등록하기'),
 		'add_new'             => __('신규 등록하기'),
-		'edit_item'           => __('M&A매물 수정하기'),
-		'update_item'         => __('M&A매물 적용하기'),
-		'search_items'        => __('M&A매물 검색하기'),
-		'not_found'           => __('매물이 없습니다.'),
-		'not_found_in_trash'  => __('휴지통에 매물이 없습니다.')
+		'edit_item'           => __('조정사례 수정하기'),
+		'update_item'         => __('조정사례 적용하기'),
+		'search_items'        => __('조정사례 검색하기'),
+		'not_found'           => __('조정사례이 없습니다.'),
+		'not_found_in_trash'  => __('휴지통에 조정사례이 없습니다.')
 	);
 	$args = array(
 		'label'               => __('deals'),
-		'description'         => __('WeMnA M&A매물'),
+		'description'         => __('ASK 조정사례'),
 		'labels'              => $labels,
 		'supports'            => array('title', 'editor', 'excerpt', 'author', 'thumbnail', 'revisions', 'custom-fields'),
 		'public'              => true,
@@ -150,23 +150,23 @@ function deals_custom_taxonomy_location()
 }
 add_action('init', 'deals_custom_taxonomy_location', 0);
 
-// Create Custom Post Type 컨설턴트
-function consultants_init()
+// Create Custom Post Type 조정인
+function mediators_init()
 {
 	$labels = array(
-		'name'					=> '컨설턴트',
-		'singular_name' 		=> '컨설턴트',
-		'add_new'				=> 'Add New',
-		'add_new_item'			=> 'Add New consultants',
-		'edit_item'				=> 'Edit consultant',
-		'new_item'				=> 'New consultant',
-		'all_item'				=> 'All consultants',
-		'view_item'				=> 'View consultant',
-		'search_item'			=> 'Search consultants',
-		'not_found'				=> 'No consultants found',
-		'not_found_in_trash'	=> 'No consultants found in Trash',
-		'parent_item_colon'		=> '',
-		'menu_name'				=> '컨설턴트'
+		'name'					=> __('조정인'),
+		'singular_name' 		=> __('조정인'),
+		'add_new'				=> __('신규 등록하기'),
+		'add_new_item'			=> __('신규 조정인 등록하기'),
+		'edit_item'				=> __('조정인 수정하기'),
+		'new_item'				=> __('신규 조정인'),
+		'all_item'				=> __('조정인 전체보기'),
+		'view_item'				=> __('조정인 보기'),
+		'search_item'			=> __('조정인 검색하기'),
+		'not_found'				=> __('조정인이 없습니다'),
+		'not_found_in_trash'	=> __('휴지통에 조정인이 없습니다.'),
+		'parent_item_colon'		=> __(''),
+		'menu_name'				=> __('조정인')
 	);
 	$args = array(
 		'labels' 				=> $labels,
@@ -176,9 +176,9 @@ function consultants_init()
 		'show_ui' 				=> true,
 		'show_in_menu'			=> true,
 		'query_var' 			=> true,
-		'rewrite' 				=> array('slug' => 'consultants'),
+		'rewrite' 				=> array('slug' => 'mediators'),
 		'capability_type' 		=> 'post',
-		'has_archive'			=> 'consultants',
+		'has_archive'			=> 'mediators',
 		'hierarchical' 			=> false,
 		'menu_icon' 			=> 'dashicons-admin-post',
 		'supports' 				=> array(
@@ -194,12 +194,12 @@ function consultants_init()
 			'page-attributes',
 		)
 	);
-	register_post_type('consultants', $args);
+	register_post_type('mediators', $args);
 }
-add_action('init', 'consultants_init');
+add_action('init', 'mediators_init');
 
-// Add Custom Taxonomy Specialty for CPT Consultants
-function consultants_custom_taxonomy_specialty()
+// Add Custom Taxonomy Specialty for CPT Mediators
+function mediators_custom_taxonomy_specialty()
 {
 	$labels = array(
 		'name' => _x('전문분야', 'taxonomy general name'),
@@ -214,7 +214,7 @@ function consultants_custom_taxonomy_specialty()
 		'new_item_name' => __('신규 전문분야 이름'),
 		'menu_name' => __('전문분야'),
 	);
-	register_taxonomy('specialty', array('consultants'), array(
+	register_taxonomy('specialty', array('mediators'), array(
 		'hierarchical' => true,
 		'labels' => $labels,
 		'show_ui' => true,
@@ -223,10 +223,10 @@ function consultants_custom_taxonomy_specialty()
 		'rewrite' => array('slug' => 'specialty'),
 	));
 }
-add_action('init', 'consultants_custom_taxonomy_specialty', 0);
+add_action('init', 'mediators_custom_taxonomy_specialty', 0);
 
-// Add Custom Taxonomy Specialty for CPT Consultants
-function consultants_custom_taxonomy_clocation()
+// Add Custom Taxonomy Specialty for CPT Mediators
+function mediators_custom_taxonomy_clocation()
 {
 	$labels = array(
 		'name' => _x('지역', 'taxonomy general name'),
@@ -241,7 +241,7 @@ function consultants_custom_taxonomy_clocation()
 		'new_item_name' => __('신규 지역 이름'),
 		'menu_name' => __('지역'),
 	);
-	register_taxonomy('clocation', array('consultants'), array(
+	register_taxonomy('clocation', array('mediators'), array(
 		'hierarchical' => true,
 		'labels' => $labels,
 		'show_ui' => true,
@@ -250,10 +250,10 @@ function consultants_custom_taxonomy_clocation()
 		'rewrite' => array('slug' => 'clocation'),
 	));
 }
-add_action('init', 'consultants_custom_taxonomy_clocation', 0);
+add_action('init', 'mediators_custom_taxonomy_clocation', 0);
 
 /*
-    in this example I have a repeater field named "consultant-attr"
+    in this example I have a repeater field named "mediator-attr"
     one of the rows of this repeater is named "const-area"
     and I want to be able to search, sort and filter by this field
 */
@@ -286,8 +286,8 @@ function convert_constarea_to_standard_wp_meta($post_id)
 	$saved_values = array();
 
 	// now we'll look at the repeater and save any values
-	if (have_rows('consultant-attr', $post_id)) {
-		while (have_rows('consultant-attr', $post_id)) {
+	if (have_rows('mediator-attr', $post_id)) {
+		while (have_rows('mediator-attr', $post_id)) {
 			the_row();
 
 			// get the value of this row
