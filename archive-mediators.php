@@ -14,94 +14,6 @@
 	<div class="container">
 
 		<!-- Custom Filter -->
-		<?php if (have_rows('mediator-attr')) : //parent group field 
-			?>
-
-			<?php while (have_rows('mediator-attr')) : the_row(); ?>
-
-				<div id="archive-filters">
-
-					<?php foreach ($GLOBALS['const_query_filters'] as $key => $name) : ?>
-
-						<?php
-
-									// get the field's settings without attempting to load a value
-									$field = get_field_object($key, false, false);
-
-									?>
-
-						<?php
-									// set value if available
-									if (isset($_GET[$name])) {
-
-										$field['value'] = explode(',', $_GET[$name]);
-									}
-
-									// create filter
-									?>
-						<div class="filter" data-filter="<?php echo $name; ?>">
-							<?php create_field($field); ?>
-						</div>
-
-					<?php endforeach; ?>
-				</div>
-
-			<?php endwhile; ?>
-
-		<?php endif; ?>
-
-
-		<script type="text/javascript">
-			(function($) {
-
-				// change
-				$('#archive-filters').on('change', 'input[type="radio"]', function() {
-
-					// vars
-					var url = '<?php echo home_url('mediators'); ?>';
-					args = {};
-
-					// loop over filters
-					$('#archive-filters .filter').each(function() {
-
-						// vars
-						var filter = $(this).data('filter'),
-							vals = [];
-
-						// find checked inputs
-						$(this).find('input:checked').each(function() {
-
-							vals.push($(this).val());
-
-						});
-
-						// append to args
-						args[filter] = vals.join(',');
-
-					});
-
-					// update url
-					url += '?';
-
-					// loop over args
-					$.each(args, function(name, value) {
-
-						url += name + '=' + value + '&';
-
-					});
-
-					// remove last &
-					url = url.slice(0, -1);
-
-					// reload page
-					window.location.replace(url);
-
-				});
-
-			})(jQuery);
-		</script>
-
-		<!-- End Custom Filter -->
 
 		<div id="content-area" class="clearfix">
 			<div id="left-area" class="row">
@@ -175,34 +87,44 @@
 													while (have_rows('consultant-attr')) : the_row();
 
 														// vars
-														$const_num = get_sub_field('const-num');
-														$const_name = get_sub_field('const-name');
 														$const_phone = get_sub_field('const-phone');
 														$const_email = get_sub_field('const-email');
-														$const_area = get_sub_field('const-area');
-														$const_specialty = get_sub_field('const-specialty');
-														$const_avail = get_sub_field('const-avail');
-														$const_tamount = get_sub_field('const-tamount');
 														$const_tcount = get_sub_field('const-tcount');
+														$const_yr = get_sub_field('const-yr');
 														$const_popular = get_sub_field('const-popular');
 
 														?>
 												<div class="const-deal-data">
 													<ul>
-														<li><span>전화번호:&nbsp</span>
-															<p><?php print_r($const_phone) ?></p>
-														</li>
-														<li><span>이메일:&nbsp</span>
-															<p><?php print_r($const_email) ?></p>
-														</li>
 														<li><span>지역:&nbsp</span>
-															<p><?php print_r($const_area) ?></p>
+															<p>
+																<?php $terms = wp_get_post_terms($post->ID, 'clocation');
+																				if ($terms) {
+																					$out = array();
+																					foreach ($terms as $term) {
+																						$out[] = $term->name;
+																					}
+																					echo join(', ', $out);
+																				} ?>
+															</p>
 														</li>
 														<li><span>전문분야:&nbsp</span>
-															<p><?php print_r($const_specialty) ?></p>
+															<p>
+																<?php $terms = wp_get_post_terms($post->ID, 'specialty');
+																				if ($terms) {
+																					$out = array();
+																					foreach ($terms as $term) {
+																						$out[] = $term->name;
+																					}
+																					echo join(', ', $out);
+																				} ?>
+															</p>
 														</li>
-														<li><span>고객 선호도:&nbsp</span>
-															<p><?php print_r($const_popular) ?></p>
+														<li><span>조정 성사 건수:&nbsp</span>
+															<p><?php print_r($const_tcount) ?></p>
+														</li>
+														<li><span>조정 경력:&nbsp</span>
+															<p><?php print_r($const_yr) ?>년</p>
 														</li>
 													</ul>
 												</div>

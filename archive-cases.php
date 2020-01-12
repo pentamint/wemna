@@ -22,7 +22,7 @@
 				'taxonomy' => 'industry',
 				'orderby' => 'name',
 			))) :
-				echo '<select name="deals-industry-filter"><option value="">업종을 선택하세요.</option>';
+				echo '<select name="cases-industry-filter"><option value="">분야를 선택하세요.</option>';
 				foreach ($terms as $term) :
 					echo '<option value="' . $term->term_id . '">' . $term->name . '</option>'; // ID of the category as the value of an option
 				endforeach;
@@ -33,7 +33,7 @@
 				'taxonomy' => 'location',
 				'orderby' => 'name'
 			))) :
-				echo '<select name="deals-location-filter"><option value="">지역을 선택하세요.</option>';
+				echo '<select name="cases-location-filter"><option value="">지역을 선택하세요.</option>';
 				foreach ($terms as $term) :
 					echo '<option value="' . $term->term_id . '">' . $term->name . '</option>'; // ID of the category as the value of an option
 				endforeach;
@@ -117,22 +117,20 @@
 							<!-- Custom Field -->
 
 							<?php
-									if (have_rows('deal-attr')) : //parent group field
-										while (have_rows('deal-attr')) : the_row();
+									if (have_rows('case-attr')) : //parent group field
+										while (have_rows('case-attr')) : the_row();
 											// vars
-											$threeperf = get_sub_field('3yr-perf');
-											$saleprice = get_sub_field('sale-price');
-											$subsbalance = get_sub_field('subs-balance');
+											$caseres = get_sub_field('case-res');
+											$caseamt = get_sub_field('case-amt');
 											?>
-									<div class="deal-data">
+									<div class="case-data">
 										<ul>
-											<li><span>업종:&nbsp</span>
+											<li><span>분야:&nbsp</span>
 												<p>
 													<?php $terms = wp_get_post_terms($post->ID, 'industry');
 																	if ($terms) {
 																		$out = array();
 																		foreach ($terms as $term) {
-																			// $out[] = '<a class="' . $term->slug . '" href="' . get_term_link($term->slug, 'industry') . '">' . $term->name . '</a>';
 																			$out[] = $term->name;
 																		}
 																		echo join(', ', $out);
@@ -145,21 +143,17 @@
 																	if ($terms) {
 																		$out = array();
 																		foreach ($terms as $term) {
-																			// $out[] = '<a class="' . $term->slug . '" href="' . get_term_link($term->slug, 'location') . '">' . $term->name . '</a>';
 																			$out[] = $term->name;
 																		}
 																		echo join(', ', $out);
 																	} ?>
 												</p>
 											</li>
-											<li><span>3년 누적실적:&nbsp</span>
-												<p><?php echo $threeperf ?></p>
+											<li><span>결과:&nbsp</span>
+												<p><?php echo $caseres ?></p>
 											</li>
-											<li><span>양도가:&nbsp</span>
-												<p><?php echo $saleprice ?></p>
-											</li>
-											<li><span>출자좌수/잔액:&nbsp</span>
-												<p><?php echo $subsbalance ?></p>
+											<li><span>분쟁액수:&nbsp</span>
+												<p><?php echo $caseamt ?></p>
 											</li>
 										</ul>
 									</div>

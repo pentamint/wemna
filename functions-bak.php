@@ -52,26 +52,26 @@ function wemna_scripts()
 add_action('wp_enqueue_scripts', 'wemna_scripts');
 
 // Create CPT M&A매물
-function deals_init()
+function cases_init()
 {
 	$labels = array(
-		'name'                => __('M&A매물'),
-		'singular_name'       => __('M&A매물'),
-		'menu_name'           => __('M&A매물'),
-		'parent_item_colon'   => __('상위 M&A매물:'),
-		'all_items'           => __('M&A매물 전체보기'),
-		'view_item'           => __('M&A매물 보기'),
-		'add_new_item'        => __('신규 M&A매물 등록하기'),
+		'name'                => __('조정사례'),
+		'singular_name'       => __('조정사례'),
+		'menu_name'           => __('조정사례'),
+		'parent_item_colon'   => __(''),
+		'all_items'           => __('조정사례 전체보기'),
+		'view_item'           => __('조정사례 보기'),
+		'add_new_item'        => __('신규 조정사례 등록하기'),
 		'add_new'             => __('신규 등록하기'),
-		'edit_item'           => __('M&A매물 수정하기'),
-		'update_item'         => __('M&A매물 적용하기'),
-		'search_items'        => __('M&A매물 검색하기'),
-		'not_found'           => __('매물이 없습니다.'),
-		'not_found_in_trash'  => __('휴지통에 매물이 없습니다.')
+		'edit_item'           => __('조정사례 수정하기'),
+		'update_item'         => __('조정사례 적용하기'),
+		'search_items'        => __('조정사례 검색하기'),
+		'not_found'           => __('조정사례이 없습니다.'),
+		'not_found_in_trash'  => __('휴지통에 조정사례이 없습니다.')
 	);
 	$args = array(
-		'label'               => __('deals'),
-		'description'         => __('WeMnA M&A매물'),
+		'label'               => __('cases'),
+		'description'         => __('ASK 조정사례'),
 		'labels'              => $labels,
 		'supports'            => array('title', 'editor', 'excerpt', 'author', 'thumbnail', 'revisions', 'custom-fields'),
 		'public'              => true,
@@ -81,7 +81,7 @@ function deals_init()
 		'show_in_nav_menus'   => true,
 		'show_in_admin_bar'   => true,
 		'query_var' 		  => true,
-		'has_archive'         => 'deals',
+		'has_archive'         => 'cases',
 		'can_export'          => true,
 		'exclude_from_search' => false,
 		'yarpp_support'     => true,
@@ -89,30 +89,30 @@ function deals_init()
 		'publicly_queryable'  => true,
 		'capability_type'     => 'page',
 		'query_var' 		  => true,
-		'rewrite' 			  => array('slug' => 'deals'),
+		'rewrite' 			  => array('slug' => 'cases'),
 		'menu_icon' 	      => 'dashicons-admin-post',
 	);
-	register_post_type('deals', $args);
+	register_post_type('cases', $args);
 }
-add_action('init', 'deals_init');
+add_action('init', 'cases_init');
 
-// Add Custom Taxonomy Industry for CPT Deals
-function deals_custom_taxonomy_industry()
+// Add Custom Taxonomy Industry for CPT Cases
+function cases_custom_taxonomy_industry()
 {
 	$labels = array(
-		'name' => _x('업종', 'taxonomy general name'),
-		'singular_name' => _x('업종', 'taxonomy singular name'),
-		'search_items' =>  __('업종 검색하기'),
-		'all_items' => __('업종 전체보기'),
-		'parent_item' => __('상위 업종'),
-		'parent_item_colon' => __('상위 업종:'),
-		'edit_item' => __('업종 수정하기'),
-		'update_item' => __('업종 적용하기'),
-		'add_new_item' => __('신규 업종 등록하기'),
-		'new_item_name' => __('신규 업종 이름'),
-		'menu_name' => __('업종'),
+		'name' => _x('분야', 'taxonomy general name'),
+		'singular_name' => _x('분야', 'taxonomy singular name'),
+		'search_items' =>  __('분야 검색하기'),
+		'all_items' => __('분야 전체보기'),
+		'parent_item' => __('상위 분야'),
+		'parent_item_colon' => __('상위 분야:'),
+		'edit_item' => __('분야 수정하기'),
+		'update_item' => __('분야 적용하기'),
+		'add_new_item' => __('신규 분야 등록하기'),
+		'new_item_name' => __('신규 분야 이름'),
+		'menu_name' => __('분야'),
 	);
-	register_taxonomy('industry', array('deals'), array(
+	register_taxonomy('industry', array('cases'), array(
 		'hierarchical' => true,
 		'labels' => $labels,
 		'show_ui' => true,
@@ -121,10 +121,10 @@ function deals_custom_taxonomy_industry()
 		'rewrite' => array('slug' => 'industry'),
 	));
 }
-add_action('init', 'deals_custom_taxonomy_industry', 0);
+add_action('init', 'cases_custom_taxonomy_industry', 0);
 
-// Add Custom Taxonomy Locations for CPT Deals
-function deals_custom_taxonomy_location()
+// Add Custom Taxonomy Locations for CPT Cases
+function cases_custom_taxonomy_location()
 {
 	$labels = array(
 		'name' => _x('지역', 'taxonomy general name'),
@@ -139,7 +139,7 @@ function deals_custom_taxonomy_location()
 		'new_item_name' => __('신규 지역 이름'),
 		'menu_name' => __('지역'),
 	);
-	register_taxonomy('location', array('deals'), array(
+	register_taxonomy('location', array('cases'), array(
 		'hierarchical' => true,
 		'labels' => $labels,
 		'show_ui' => true,
@@ -148,25 +148,25 @@ function deals_custom_taxonomy_location()
 		'rewrite' => array('slug' => 'location'),
 	));
 }
-add_action('init', 'deals_custom_taxonomy_location', 0);
+add_action('init', 'cases_custom_taxonomy_location', 0);
 
-// Create Custom Post Type 컨설턴트
-function consultants_init()
+// Create Custom Post Type 조정인
+function mediators_init()
 {
 	$labels = array(
-		'name'					=> '컨설턴트',
-		'singular_name' 		=> '컨설턴트',
-		'add_new'				=> 'Add New',
-		'add_new_item'			=> 'Add New consultants',
-		'edit_item'				=> 'Edit consultant',
-		'new_item'				=> 'New consultant',
-		'all_item'				=> 'All consultants',
-		'view_item'				=> 'View consultant',
-		'search_item'			=> 'Search consultants',
-		'not_found'				=> 'No consultants found',
-		'not_found_in_trash'	=> 'No consultants found in Trash',
-		'parent_item_colon'		=> '',
-		'menu_name'				=> '컨설턴트'
+		'name'					=> __('조정인'),
+		'singular_name' 		=> __('조정인'),
+		'add_new'				=> __('신규 등록하기'),
+		'add_new_item'			=> __('신규 조정인 등록하기'),
+		'edit_item'				=> __('조정인 수정하기'),
+		'new_item'				=> __('신규 조정인'),
+		'all_item'				=> __('조정인 전체보기'),
+		'view_item'				=> __('조정인 보기'),
+		'search_item'			=> __('조정인 검색하기'),
+		'not_found'				=> __('조정인이 없습니다'),
+		'not_found_in_trash'	=> __('휴지통에 조정인이 없습니다.'),
+		'parent_item_colon'		=> __(''),
+		'menu_name'				=> __('조정인')
 	);
 	$args = array(
 		'labels' 				=> $labels,
@@ -176,9 +176,9 @@ function consultants_init()
 		'show_ui' 				=> true,
 		'show_in_menu'			=> true,
 		'query_var' 			=> true,
-		'rewrite' 				=> array('slug' => 'consultants'),
+		'rewrite' 				=> array('slug' => 'mediators'),
 		'capability_type' 		=> 'post',
-		'has_archive'			=> 'consultants',
+		'has_archive'			=> 'mediators',
 		'hierarchical' 			=> false,
 		'menu_icon' 			=> 'dashicons-admin-post',
 		'supports' 				=> array(
@@ -194,12 +194,12 @@ function consultants_init()
 			'page-attributes',
 		)
 	);
-	register_post_type('consultants', $args);
+	register_post_type('mediators', $args);
 }
-add_action('init', 'consultants_init');
+add_action('init', 'mediators_init');
 
-// Add Custom Taxonomy Specialty for CPT Consultants
-function consultants_custom_taxonomy_specialty()
+// Add Custom Taxonomy Specialty for CPT Mediators
+function mediators_custom_taxonomy_specialty()
 {
 	$labels = array(
 		'name' => _x('전문분야', 'taxonomy general name'),
@@ -214,7 +214,7 @@ function consultants_custom_taxonomy_specialty()
 		'new_item_name' => __('신규 전문분야 이름'),
 		'menu_name' => __('전문분야'),
 	);
-	register_taxonomy('specialty', array('consultants'), array(
+	register_taxonomy('specialty', array('mediators'), array(
 		'hierarchical' => true,
 		'labels' => $labels,
 		'show_ui' => true,
@@ -223,10 +223,10 @@ function consultants_custom_taxonomy_specialty()
 		'rewrite' => array('slug' => 'specialty'),
 	));
 }
-add_action('init', 'consultants_custom_taxonomy_specialty', 0);
+add_action('init', 'mediators_custom_taxonomy_specialty', 0);
 
-// Add Custom Taxonomy Specialty for CPT Consultants
-function consultants_custom_taxonomy_clocation()
+// Add Custom Taxonomy Specialty for CPT Mediators
+function mediators_custom_taxonomy_clocation()
 {
 	$labels = array(
 		'name' => _x('지역', 'taxonomy general name'),
@@ -241,7 +241,7 @@ function consultants_custom_taxonomy_clocation()
 		'new_item_name' => __('신규 지역 이름'),
 		'menu_name' => __('지역'),
 	);
-	register_taxonomy('clocation', array('consultants'), array(
+	register_taxonomy('clocation', array('mediators'), array(
 		'hierarchical' => true,
 		'labels' => $labels,
 		'show_ui' => true,
@@ -250,10 +250,10 @@ function consultants_custom_taxonomy_clocation()
 		'rewrite' => array('slug' => 'clocation'),
 	));
 }
-add_action('init', 'consultants_custom_taxonomy_clocation', 0);
+add_action('init', 'mediators_custom_taxonomy_clocation', 0);
 
 /*
-    in this example I have a repeater field named "consultant-attr"
+    in this example I have a repeater field named "mediator-attr"
     one of the rows of this repeater is named "const-area"
     and I want to be able to search, sort and filter by this field
 */
@@ -286,8 +286,8 @@ function convert_constarea_to_standard_wp_meta($post_id)
 	$saved_values = array();
 
 	// now we'll look at the repeater and save any values
-	if (have_rows('consultant-attr', $post_id)) {
-		while (have_rows('consultant-attr', $post_id)) {
+	if (have_rows('mediator-attr', $post_id)) {
+		while (have_rows('mediator-attr', $post_id)) {
 			the_row();
 
 			// get the value of this row
@@ -386,55 +386,49 @@ function pm_loadmore_ajax_handler()
 			$pm_post_title = get_the_title();
 			?>
 
-			<article id="post-<?php the_ID(); ?>" <?php post_class('et_pb_post col-12 col-sm-6 col-md-4'); ?>>
+			<article id="post-<?php the_ID(); ?>" <?php post_class('et_pb_post col-12 col-sm-6 col-md-3'); ?>>
 
 				<!-- Custom Field -->
 				<h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php echo $pm_post_title; ?></a></h2>
 
 				<?php
-				if (have_rows('deal-attr')) : //parent group field
-					while (have_rows('deal-attr')) : the_row();
-						// vars
-						$threeperf = get_sub_field('3yr-perf');
-						$saleprice = get_sub_field('sale-price');
-						$subsbalance = get_sub_field('subs-balance');
-						?>
-						<div class="deal-data">
+							if (have_rows('case-attr')) : //parent group field
+								while (have_rows('case-attr')) : the_row();
+									// vars
+									$caseres = get_sub_field('case-res');
+									$caseamt = get_sub_field('case-amt');
+									?>
+						<div class="case-data">
 							<ul>
-								<li><span>업종:&nbsp</span>
+								<li><span>분야:&nbsp</span>
 									<p>
 										<?php $terms = wp_get_post_terms($pm_post->ID, 'industry');
-										if ($terms) {
-											$out = array();
-											foreach ($terms as $term) {
-												// $out[] = '<a class="' . $term->slug . '" href="' . get_term_link($term->slug, 'industry') . '">' . $term->name . '</a>';
-												$out[] = $term->name;
-											}
-											echo join(', ', $out);
-										} ?>
+															if ($terms) {
+																$out = array();
+																foreach ($terms as $term) {
+																	$out[] = $term->name;
+																}
+																echo join(', ', $out);
+															} ?>
 									</p>
 								</li>
 								<li><span>지역:&nbsp</span>
 									<p>
 										<?php $terms = wp_get_post_terms($pm_post->ID, 'location');
-										if ($terms) {
-											$out = array();
-											foreach ($terms as $term) {
-												// $out[] = '<a class="' . $term->slug . '" href="' . get_term_link($term->slug, 'location') . '">' . $term->name . '</a>';
-												$out[] = $term->name;
-											}
-											echo join(', ', $out);
-										} ?>
+															if ($terms) {
+																$out = array();
+																foreach ($terms as $term) {
+																	$out[] = $term->name;
+																}
+																echo join(', ', $out);
+															} ?>
 									</p>
 								</li>
-								<li><span>3년 누적실적:&nbsp</span>
-									<p><?php echo $threeperf ?></p>
+								<li><span>결과:&nbsp</span>
+									<p><?php echo $caseres ?></p>
 								</li>
-								<li><span>양도가:&nbsp</span>
-									<p><?php echo $saleprice ?></p>
-								</li>
-								<li><span>출자좌수/잔액:&nbsp</span>
-									<p><?php echo $subsbalance ?></p>
+								<li><span>분쟁액수:&nbsp</span>
+									<p><?php echo $caseamt ?></p>
 								</li>
 							</ul>
 						</div>
@@ -446,126 +440,136 @@ function pm_loadmore_ajax_handler()
 				<!-- End Custom Field -->
 
 			</article> <!-- .et_pb_post -->
-			<?php
-			the_post_thumbnail();
-		endwhile;
-		wp_reset_postdata();
-	endif;
-	die; // here we exit the script and even no wp_reset_query() required!
-}
+	<?php
+				the_post_thumbnail();
+			endwhile;
+			wp_reset_postdata();
+		endif;
+		die; // here we exit the script and even no wp_reset_query() required!
+	}
 
-// ----- Custom Filter Module ----- //
-// Process Filter Requests
+	// ----- Custom Filter Module ----- //
+	// Process Filter Requests
 
-add_action('wp_ajax_pmfilter', 'pm_filter_function'); // wp_ajax_{ACTION HERE} 
-add_action('wp_ajax_nopriv_myfilter', 'pm_filter_function');
+	add_action('wp_ajax_pmfilter', 'pm_filter_function'); // wp_ajax_{ACTION HERE} 
+	add_action('wp_ajax_nopriv_myfilter', 'pm_filter_function');
 
-function pm_filter_function()
-{
+	function pm_filter_function()
+	{
 
-	$args = array(
-		'orderby' => 'date', // we will sort posts by date
-		'order'	=> $_POST['date'], // ASC or DESC
-		'post_type' => 'deals'
-	);
-
-	$args['tax_query'] = array();
-
-	$args['tax_query'] = array('relation' => 'AND');
-
-	if (isset($_POST['deals-industry-filter']) && !empty($_POST['deals-industry-filter']))
-		// $terms1[] = $_POST['deals-industry-filter'];
-		$args['tax_query'] = array(
-			array(
-				'taxonomy' => 'industry',
-				'field' => 'id',
-				'terms' => $_POST['deals-industry-filter']
-			)
+		$args = array(
+			'post_type' => 'cases'
 		);
 
-	if (isset($_POST['deals-location-filter']) && !empty($_POST['deals-location-filter']))
-		$args['tax_query'] = array(
-			array(
-				'taxonomy' => 'location',
-				'field' => 'id',
-				'terms' => $_POST['deals-location-filter']
-			)
-		);
+		$args['tax_query'] = array();
 
-	if ((isset($_POST['deals-industry-filter']) && !empty($_POST['deals-industry-filter'])) && (isset($_POST['deals-location-filter']) && !empty($_POST['deals-location-filter'])))
-		$args['tax_query'] = array(
-			'relation' => 'AND',
-			array(
-				'taxonomy' => 'industry',
-				'field' => 'id',
-				'terms' => $_POST['deals-industry-filter']
-			),
-			array(
-				'taxonomy' => 'location',
-				'field' => 'id',
-				'terms' => $_POST['deals-location-filter']
-			)
-		);
+		$args['tax_query'] = array('relation' => 'AND');
 
-	$query = new WP_Query($args); ?>
+		$alltermsind = get_terms('industry');
+		$alltermsloc = get_terms('location');
+
+		if (isset($_POST['cases-industry-filter']) && !empty($_POST['cases-industry-filter']))
+			// $terms1[] = $_POST['cases-industry-filter'];
+			$args['tax_query'] = array(
+				array(
+					'taxonomy' => 'industry',
+					'field' => 'id',
+					'terms' => $_POST['cases-industry-filter']
+				)
+			);
+
+		if (isset($_POST['cases-location-filter']) && !empty($_POST['cases-location-filter']))
+			$args['tax_query'] = array(
+				array(
+					'taxonomy' => 'location',
+					'field' => 'id',
+					'terms' => $_POST['cases-location-filter']
+				)
+			);
+
+		if ((isset($_POST['cases-industry-filter']) && !empty($_POST['cases-industry-filter'])) && (isset($_POST['cases-location-filter']) && !empty($_POST['cases-location-filter'])))
+			$args['tax_query'] = array(
+				'relation' => 'AND',
+				array(
+					'taxonomy' => 'industry',
+					'field' => 'id',
+					'terms' => $_POST['cases-industry-filter']
+				),
+				array(
+					'taxonomy' => 'location',
+					'field' => 'id',
+					'terms' => $_POST['cases-location-filter']
+				)
+			);
+
+		if ((!isset($_POST['cases-industry-filter']) && empty($_POST['cases-industry-filter'])) && (!isset($_POST['cases-location-filter']) && empty($_POST['cases-location-filter'])))
+			$args['tax_query'] = array(
+				// 'relation' => 'OR',
+				array(
+					'taxonomy' => 'industry',
+					'field' => 'id',
+					'terms' => $alltermsind
+				),
+				array(
+					'taxonomy' => 'location',
+					'field' => 'id',
+					'terms' => $alltermsloc
+				)
+			);
+
+		$query = new WP_Query($args); ?>
 
 	<div id="pm_posts_wrap" class="row">
 		<?php
-		if ($query->have_posts()) :
-			while ($query->have_posts()) : $query->the_post();
-				$post = get_post();
-				$pm_post_title = get_the_title();
-				?>
+			if ($query->have_posts()) :
+				while ($query->have_posts()) : $query->the_post();
+					$pm_post = get_post();
+					$pm_post_title = get_the_title();
+					?>
 
-				<article id="post-<?php the_ID(); ?>" <?php post_class('et_pb_post col-12 col-sm-6 col-md-4'); ?>>
+				<article id="post-<?php the_ID(); ?>" <?php post_class('et_pb_post col-12 col-sm-6 col-md-3'); ?>>
 
 					<!-- Custom Field -->
 					<h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php echo $pm_post_title; ?></a></h2>
 
 					<?php
-					if (have_rows('deal-attr')) : //parent group field
-						while (have_rows('deal-attr')) : the_row();
-							// vars
-							$threeperf = get_sub_field('3yr-perf');
-							$saleprice = get_sub_field('sale-price');
-							$subsbalance = get_sub_field('subs-balance');
-							?>
-							<div class="deal-data">
+								if (have_rows('case-attr')) : //parent group field
+									while (have_rows('case-attr')) : the_row();
+										// vars
+										$caseres = get_sub_field('case-res');
+										$caseamt = get_sub_field('case-amt');
+										?>
+							<div class="case-data">
 								<ul>
-									<li><span>업종:&nbsp</span>
+									<li><span>분야:&nbsp</span>
 										<p>
-											<?php $terms = wp_get_post_terms($post->ID, 'industry');
-											if ($terms) {
-												$out = array();
-												foreach ($terms as $term) {
-													// $out[] = '<a class="' . $term->slug . '" href="' . get_term_link($term->slug, 'industry') . '">' . $term->name . '</a>';
-													$out[] = $term->name;
-												}
-												echo join(', ', $out);
-											} ?>
+											<?php $terms = wp_get_post_terms($pm_post->ID, 'industry');
+																if ($terms) {
+																	$out = array();
+																	foreach ($terms as $term) {
+																		$out[] = $term->name;
+																	}
+																	echo join(', ', $out);
+																} ?>
 										</p>
 									</li>
 									<li><span>지역:&nbsp</span>
 										<p>
-											<?php $terms = wp_get_post_terms($post->ID, 'location');
-											if ($terms) {
-												$out = array();
-												foreach ($terms as $term) {
-													// $out[] = '<a class="' . $term->slug . '" href="' . get_term_link($term->slug, 'location') . '">' . $term->name . '</a>';
-													$out[] = $term->name;
-												}
-												echo join(', ', $out);
-											} ?>
+											<?php $terms = wp_get_post_terms($pm_post->ID, 'location');
+																if ($terms) {
+																	$out = array();
+																	foreach ($terms as $term) {
+																		$out[] = $term->name;
+																	}
+																	echo join(', ', $out);
+																} ?>
 										</p>
 									</li>
-									<li><span>3년 누적실적:&nbsp</span>
-										<p><?php echo $threeperf ?></p>
+									<li><span>결과:&nbsp</span>
+										<p><?php echo $caseres ?></p>
 									</li>
-									<li><span>양도가:&nbsp</span>
-										<p><?php echo $saleprice ?></p>
-									</li>
-									<li><span>출자좌수/잔액:&nbsp</span>
-										<p><?php echo $subsbalance ?></p>
+									<li><span>분쟁액수:&nbsp</span>
+										<p><?php echo $caseamt ?></p>
 									</li>
 								</ul>
 							</div>
@@ -577,16 +581,16 @@ function pm_filter_function()
 					<!-- End Custom Field -->
 
 				</article> <!-- .et_pb_post -->
-				<?php
-				the_post_thumbnail();
-			endwhile;
-			wp_reset_postdata();
-		else :
-			echo '필터 조건을 충족하는 검색결과가 없습니다.';
-		endif;
-		?>
+		<?php
+					the_post_thumbnail();
+				endwhile;
+				wp_reset_postdata();
+			else :
+				echo '필터 조건을 충족하는 검색결과가 없습니다.';
+			endif;
+			?>
 	</div>
-	<?php die();
+<?php die();
 }
 // pm_paginator( $_POST['first_page'] );
 // Create Custom Function for AJAX Pagination

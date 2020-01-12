@@ -70,7 +70,7 @@ img:not(#logo) {
 }
 @media (min-width: 981px) {
   #page-container {
-    padding-top: 110px !important;
+    padding-top: 111px !important;
   }
   #main-header {
     top: 62px !important;
@@ -79,7 +79,7 @@ img:not(#logo) {
 /* !Header Jump Fix */
 /* --- Divi Bootstrap Support --- */
 #main-content > .container {
-  padding-bottom: 58px;
+  padding-bottom: 5rem;
 }
 #main-content .et_pb_section .container {
   padding-top: 0;
@@ -153,7 +153,7 @@ body.archive #sidebar,
 .single .entry-title {
   text-align: center; /* center post title */
 }
-.single-deals.et-db .entry-content #et-boc .et_pb_row {
+.single-cases.et-db .entry-content #et-boc .et_pb_row {
   width: 100%;
 }
 /* --- */
@@ -224,16 +224,44 @@ body.archive #sidebar,
     max-height: 9rem;
   }
 }
+/* ----- PM Paginator & View More ----- */
+#pm_pagination {
+  margin-bottom: 20px;
+}
+#pm_pagination .nav-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+#pm_pagination .nav-links .page-numbers {
+  margin-right: 5px;
+  width: 25px;
+  text-align: center;
+  background-color: #f1f4f8;
+  color: #666;
+}
+#pm_pagination .nav-links .page-numbers.current {
+  background-color: #7bc6de;
+  color: #fff;
+}
+#pm_loadmore {
+  margin: 0 auto;
+  padding: 5px 10px;
+  width: 200px;
+  background-color: #e8e8e8;
+  color: #000;
+  border-radius: 10px;
+  text-align: center;
+}
 /* ----- Archives ----- */
 /* --- Archives: Global --- */
 .pagination {
   width: 100%;
 }
-.archive #response article .deal-data-container .deal-data ul {
+.archive #response article .case-data-container .case-data ul {
   border: 1px solid #ccc;
 }
-/* --- */
-/* --- Archives: 매물검색 --- */
 .archive .et_pb_section_0.et_pb_fullwidth_section {
   background-image: url(http://www.wemna.com/wp-content/uploads/2019/05/jacob-christiansen-1272678-unsplash.jpg);
   background-color: #ffffff;
@@ -248,52 +276,76 @@ body.archive #sidebar,
 .archive .post-meta {
   display: none;
 }
-/* archive card design */
-body.archive #response {
+/* --- Archives: 조정사례 --- */
+/* - archive card design - */
+article.cases .article-post-content {
+  display: none;
+}
+.post-type-archive-cases #response {
   margin-top: 30px;
 }
-body.archive #response article {
+.post-type-archive-cases #response article {
   margin-bottom: 30px;
 }
-body.archive .entry-title {
-  padding-bottom: 0;
-  border-bottom: 0;
-  padding: 10px 15px;
+.post-type-archive-cases form select {
+  /* filter dropdown */
+  border-radius: 5px;
+  margin-right: 10px;
+  font-size: 14px;
+  padding: 5px 7px;
+}
+.post-type-archive-cases form button {
+  /* filter button */
+  padding: 0.25rem 0.75rem;
+  background-color: #e8e8e8;
+  border-radius: 25px;
+  color: #000;
+  border: 0;
+  font-size: 14px;
+}
+.post-type-archive-cases .entry-title {
+  /* card title */
+  padding: 0.75rem 0 0.5rem;
   text-align: center;
   font-size: 18px;
   font-weight: 700;
   background-color: #005288;
-  color: #f2f2f2;
+  color: #fff;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
-body.archive .entry-title a:hover {
-  color: #ccc;
+.post-type-archive-cases .entry-title:hover {
+  background-color: #7bc6de;
 }
-body.archive .deal-data {
+.post-type-archive-cases .entry-title a:hover {
+  color: #fff;
+}
+.post-type-archive-cases .case-data {
   /* card inner */
   padding: 15px 10px;
-  border: 1px solid #ccc;
   border-top: none;
   border-bottom: none;
+  -webkit-box-shadow: 0 0 35px 0 rgba(154, 161, 171, 0.15);
+  box-shadow: 0 0 35px 0 rgba(154, 161, 171, 0.15);
 }
-body.archive .deal-data > ul > li p {
+.post-type-archive-cases .case-data > ul > li p {
   /* card inner p */
   display: inline-block;
 }
-/* button design */
-body.archive #response button {
+.post-type-archive-cases #response button {
+  /* button design */
+  padding: 0.25rem;
   width: 100%;
-  background-color: #f9f9f9;
-  border: 1px solid #ccc;
+  background-color: #f1f4f8;
+  border: 0;
+  border-radius: 0 0 10px 10px;
 }
-body.archive #response button a {
+.post-type-archive-cases #response button a {
   font-weight: 700;
 }
-body.archive #response button a:hover {
+.post-type-archive-cases #response button a:hover {
   color: #7bc6de;
 }
-/* --- */
 /* --- Archives: 조정인 검색 --- */
 article.mediators {
   margin-bottom: 30px;
@@ -356,17 +408,23 @@ article.mediators .const-data-container button {
   margin-left: 1em;
   font-size: 14px;
 }
+
+/* --- Single Page: 조정인 --- */
+article .et_post_meta_wrapper,
+article .screen-reader-text {
+  display: none;
+}
 /* ----- */
 
 /* --- Search Page --- */
-.deal-list ul {
+.case-list ul {
   display: flex;
   flex-wrap: wrap;
   flex: 0 1;
   justify-content: space-between;
   padding: 0 0 23px 0;
 }
-.deal-list ul li {
+.case-list ul li {
   margin-bottom: 25px;
   margin-right: 15px;
   border: 1px solid #ccc;
@@ -374,24 +432,24 @@ article.mediators .const-data-container button {
   flex-basis: calc((76vw - 20px) / 2);
   min-width: 130px;
 }
-.deal-list ul li .inner-wrapper {
+.case-list ul li .inner-wrapper {
   padding: 10px 20px;
 }
 @media (max-width: 767px) {
-  .deal-list ul li:nth-child(2n) {
+  .case-list ul li:nth-child(2n) {
     margin-right: 0;
   }
 }
 @media (min-width: 768px) {
-  .deal-list ul li {
+  .case-list ul li {
     flex-basis: calc((75vw - 20px) / 3);
     max-width: 346px;
   }
-  .deal-list ul li:nth-child(3n) {
+  .case-list ul li:nth-child(3n) {
     margin-right: 0;
   }
 }
-.deal-title {
+.case-title {
   padding: 10px 20px;
   border-bottom: 1px solid #ccc;
   text-align: center;
@@ -515,7 +573,6 @@ button.kboard-default-button-small {
     font-weight: 700;
   }
 }
-/* --- */
 /* --- Header area --- */
 #top-menu a {
   font-family: Roboto, "NanumSquareRound", sans-serif;
@@ -527,10 +584,6 @@ button.kboard-default-button-small {
   opacity: 1;
   color: #7bc6de;
 }
-#logo {
-  max-height: 30%;
-}
-/* --- */
 /* --- Main content --- */
 .et_pb_cta_0.et_pb_promo h2,
 .et_pb_cta_0.et_pb_promo h1.et_pb_module_header,
@@ -544,12 +597,10 @@ button.kboard-default-button-small {
 /* !----- Typography ----- */
 
 /* ----- Elements ----- */
-/* --- Module --- */
-/* Icon circle */
+/* --- Icon circle --- */
 .et-pb-icon-circle {
   padding: 25px 25px 25px 23px;
 }
-/* !--- Module --- */
 /* !----- Elements ----- */
 
 /* ----- Theme Design ----- */
@@ -641,6 +692,9 @@ body.et-pb-preview #main-content .container ul {
   /* remove phone icon */
   display: none;
 }
+#logo {
+  max-height: 25px;
+}
 /* --- */
 
 /* --- Footer Section --- */
@@ -662,7 +716,7 @@ body.archive .entry-title {
 
 /* --- Pages: 메인페이지 --- */
 
-/* Row 2 - 최고의 M&A 플랫폼 */
+/* Row 2 - 최고의 분쟁 조정 플랫폼 */
 .home .et_pb_section_2 {
   background-image: linear-gradient(180deg, #85c9e0 0%, #7bc6de 100%) !important;
 }
@@ -674,67 +728,13 @@ body.archive .entry-title {
   min-height: 220px; /* equal height */
 }
 
-/* Row 3 - 조정사례 리스트 */
-.best_deals_wrapper {
-  background-color: #fff;
-}
-.best_deals_wrapper .container {
-  padding-top: 100px !important;
-  padding-bottom: 100px !important;
-}
-.best_deals_row_title {
-  font-family: "Nanum Square Round", Helvetica, Arial, Lucida, sans-serif;
-  font-weight: 700;
-  font-size: 38px;
-  line-height: 1.5em;
-  text-align: center;
-  margin-bottom: 1em;
-}
-.deals_item .post-title {
-  padding-bottom: 0;
-  border-bottom: 0;
-  padding: 10px 15px;
-  text-align: center;
-  font-size: 18px;
-  font-weight: 700;
-  background-color: #005288;
-  color: #f2f2f2;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
-.deals_item .post-title a:hover {
-  color: #ccc;
-}
-.best_deals .deal-data {
-  padding: 15px 10px;
-  border: 1px solid #ccc;
-  border-top: none;
-  border-bottom: none;
-}
-.best_deals .deal-data > ul > li p {
-  display: inline-block;
-}
-.deals_item button {
-  width: 100%;
-  background-color: #f9f9f9;
-  border: 1px solid #ccc;
-}
-.deals_item button a {
-  font-weight: 700;
-}
-.deals_item button a:hover {
-  color: #7bc6de;
-}
-.best_deals .row {
-  margin-bottom: 1em;
-}
-/* Row 4 - 조정인 리스트 */
+/* Row 3 - 조정인 소개 */
 .best_mediators_wrapper {
   background-color: #f1f4f8;
 }
 .best_mediators_wrapper .container {
-  padding-top: 100px !important;
-  padding-bottom: 100px !important;
+  padding-top: 7rem !important;
+  padding-bottom: 9rem !important;
 }
 .best_mediators_row_title {
   font-family: "Nanum Square Round", Helvetica, Arial, Lucida, sans-serif;
@@ -744,9 +744,85 @@ body.archive .entry-title {
   text-align: center;
   margin-bottom: 1em;
 }
+.best_mediators .row {
+  margin-bottom: 2rem;
+}
+/* Button Group */
+.best_btn_group ul {
+  display: flex;
+  justify-content: space-around;
+}
+.best_btn_group ul li {
+  padding: 0.5rem 1rem;
+  background-color: #444;
+  border-radius: 25px;
+}
+.best_btn_group ul li a {
+  color: #fff;
+}
+
 @media (max-width: 479px) {
 }
 /* --- */
+
+/* Row 4 - 조정사례 리스트 */
+.best_cases_wrapper {
+  background-color: #fff;
+}
+.best_cases_wrapper .container {
+  padding-top: 7rem !important;
+  padding-bottom: 10rem !important;
+}
+.best_cases_row_title {
+  font-family: "Nanum Square Round", Helvetica, Arial, Lucida, sans-serif;
+  font-weight: 700;
+  font-size: 38px;
+  line-height: 1.5em;
+  text-align: center;
+  margin-bottom: 1em;
+}
+.cases_item .post-title {
+  padding: 0.75rem 0 0.5rem;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  background-color: #005288;
+  color: #fff;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.cases_item .post-title:hover {
+  background-color: #7bc6de;
+}
+.cases_item .post-title a:hover {
+  color: #fff;
+}
+.best_cases .case-data {
+  padding: 15px 10px;
+  border-top: none;
+  border-bottom: none;
+  -webkit-box-shadow: 0 0 35px 0 rgba(154, 161, 171, 0.15);
+  box-shadow: 0 0 35px 0 rgba(154, 161, 171, 0.15);
+}
+.best_cases .case-data > ul > li p {
+  display: inline-block;
+}
+.cases_item button {
+  padding: 0.25rem;
+  width: 100%;
+  background-color: #f1f4f8;
+  border: 0;
+  border-radius: 0 0 10px 10px;
+}
+.cases_item button a {
+  font-weight: 700;
+}
+.cases_item button a:hover {
+  color: #7bc6de;
+}
+.best_cases .cases_item {
+  margin-bottom: 4rem;
+}
 
 /* ----- */
 
